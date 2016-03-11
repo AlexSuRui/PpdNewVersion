@@ -12,7 +12,6 @@
 	}
 	
 	startDocument("Liste des utilisateurs");
-
 	?>
 
 <?php include('header.php'); ?>
