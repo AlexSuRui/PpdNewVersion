@@ -12,7 +12,6 @@
 	}
 	
 	startDocument("Liste des utilisateurs");
-	navBar();
 	?>
 
 <?php include('header.php'); ?>
