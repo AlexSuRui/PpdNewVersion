@@ -89,7 +89,7 @@
             <div class="col-xs-8">
               <div class="checkbox icheck">
                 <label>
-					<a href="enregistrement.php" class="text-center">Register a new membership</a>
+					<a href="enregistrements.php" class="text-center">Register a new membership</a>
                 </label>
               </div>
             </div><!-- /.col -->
