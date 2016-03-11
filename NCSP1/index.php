@@ -47,7 +47,7 @@
               <div class="container">
                 <div class="col-md-3 fh5co-logo">
                   <a href="#" class="js-fh5co-mobile-toggle fh5co-nav-toggle"><i></i></a>
-                  <a href="#">Voltage</a>
+                  <a href="#">IDV Paris Descartes</a>
                 </div>
                 <div class="col-md-3 col-md-offset-4 text-center fh5co-link-wrap">
                   <ul data-offcanvass="yes">

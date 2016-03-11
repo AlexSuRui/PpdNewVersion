@@ -31,26 +31,26 @@
     <![endif]-->
   </head>
   <body class="hold-transition login-page">
-    <div class="login-box" style="">
-		<div class="login-logo">
-			<a href="index.php"><img src="images/logoIDV.png" /></a>
-			<h2>Who are you registering as?</h2>
-		</div>
-		
-		<div class="row"> 
-			<div class="col-xs-6 col-md-6"> 
-				<a href="enregistrement.php?type=demandeur" class="thumbnail"> 
-					<img src="images/user.png" alt="user" src=" style="width: 100%; display: block;">
-					<h4 class="text-center">A Requester</h4>
-				</a> 
-			</div>
-			<div class="col-xs-6 col-md-6"> 
-				<a href="enregistrement.php" class="thumbnail"> 
-					<img src="images/users.png" alt="users"  style="width: 100%; display: block;"> 
-					<h4 class="text-center">A Crowder</h4>
-				</a> 
-			</div>
-		</div>
-    </div><!-- /.login-box -->
+    <<div class="col-md-10 col-md-offset-1 col-sm-8 col-sm-offset-2">
+    		<div class="login-logo">
+    			<a href="index.php"><img src="images/logoIDV.png" /></a>
+    			<h2>Who are you registering as?</h2>
+    		</div>
+    		
+    		<div class="row"> 
+                <div class="col-md-4 col-md-offset-2">
+                    <a href="enregistrement.php?type=demandeur" class="thumbnail"> 
+                    <img src="images/crowdeur.jpg" alt="user" src=" style="width: 100%; display: block;">
+                    <h4 class="text-center">A Requester</h4>
+                    </a> 
+                </div>
+                <div class="col-md-4 col-md-offset-1">
+                    <a href="enregistrement.php" class="thumbnail"> 
+                    <img src="images/demandeur.jpg" alt="user" src=" style="width: 100%; display: block;">
+                    <h4 class="text-center">A Crowder</h4>
+                    </a> 
+                </div>
+            </div>
+    </div>
   </body>
 </html>

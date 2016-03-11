@@ -33,7 +33,7 @@
   <body class="hold-transition login-page">
     <div class="col-md-10 col-md-offset-1 col-sm-8 col-sm-offset-2">
 		<div class="login-logo">
-			<a href="index2.html"><img src="images/logoIDV.png" /></a>
+			<a href="index.php"><img src="images/logoIDV.png" /></a>
 			<h2>Who are you logging in as?</h2>
 		</div>
 		
@@ -41,14 +41,14 @@
             
                             <div class="col-md-4 col-md-offset-2">
                                 <a href="connexion.php" class="thumbnail"> 
-                                <img src="images/demandeur.jpg" alt="user" src=" style="width: 100%; display: block;">
-                                <h4 class="text-center">A Contributeur</h4>
+                                <img src="images/crowdeur.jpg" alt="user" src=" style="width: 100%; display: block;">
+                                <h4 class="text-center">A Requester</h4>
                                 </a> 
                             </div>
                             <div class="col-md-4 col-md-offset-1">
                                 <a href="connexion.php" class="thumbnail"> 
-                                <img src="images/crowdeur.jpg" alt="user" src=" style="width: 100%; display: block;">
-                                <h4 class="text-center">A Customer</h4>
+                                <img src="images/demandeur.jpg" alt="user" src=" style="width: 100%; display: block;">
+                                <h4 class="text-center">A Crowder</h4>
                                 </a> 
                             </div>
 
