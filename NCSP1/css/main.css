@@ -1,0 +1,63 @@
+/*Header*/
+	.wrapper{
+	width:980px;
+	margin:0 auto;
+	line-height:25px;
+	}
+	.header_1{
+	background:#f6f6f6;
+	border-left:1px solid #d7d7d7;
+	border-right:1px solid #d7d7d7;
+	}
+	#logo{
+	float:left;
+	margin:10px 0px;
+	margin-left:10px;
+	}
+	#logo a{
+	display:block;
+	background:url(../images/logoIDV.png) no-repeat;
+	width:248px;
+	height:60px;
+	}
+	.header_2{
+	color:#333333;
+	font-size:12px;
+	border:1px solid #d0d0d0;
+	background:#f6f6f6;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f6f6f6), to(#e9eaea));
+	background: -moz-linear-gradient(top, #f6f6f6, #e9eaea);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#e9eaea');
+	}
+	.header_2 ul{
+	margin:0px;
+	padding:0px;
+	list-style:none;
+	}
+	.header_2 ul li{
+	float:left;
+	}
+	.header_2 ul li a{
+	display:block;
+	color:#333333;
+	padding:10px 15px;
+	border-right:1px solid #bfbfbf;
+	border-left:1px solid #fbfbfb;
+	}
+	.header_2 ul li a:hover{
+	text-decoration:none;
+	background:#f0f1f3;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f0f1f3), to(#e2e3e4));
+	background: -moz-linear-gradient(top, #f0f1f3, #e2e3e4);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f0f1f3', endColorstr='#e2e3e4');
+	}
+	.header_2 ul li a.current{
+	text-decoration:none;
+	background:#8cbf58;
+	background: -webkit-gradient(linear, left top, left bottom, from(#8cbf58), to(#80b647));
+	background: -moz-linear-gradient(top, #8cbf58, #80b647);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#8cbf58', endColorstr='#80b647');
+	color:#FFFFFF;
+	border:1px solid #608835;
+	text-shadow:#5e8339 0.1em 0.1em;
+	}
