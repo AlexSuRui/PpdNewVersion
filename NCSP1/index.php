@@ -3,8 +3,7 @@
 		include "moduleBDD.php";
 		session_start();
 		
-		//startDocument("Page d'accueil");
-		//navBar();
+		startDocument("Page d'accueil");
 		connection(true);
 		if (isset($_SESSION["utilisateur"]))
 			$me = $_SESSION["utilisateur"];
