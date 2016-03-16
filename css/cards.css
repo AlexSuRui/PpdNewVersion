@@ -882,7 +882,7 @@ a:hover .lnk-icon-right {
 */
 .fh5co-cover {
   position: relative;
-  min-height: 800px;
+  min-height: 100%;
 }
 .fh5co-cover .fh5co-cover-text {
   position: relative;
