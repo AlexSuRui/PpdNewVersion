@@ -3,13 +3,14 @@
 	
 	if (isset($_SESSION["utilisateur"]))
 		header('Location: profil.php');
+
 	?>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Log in</title>
+    <title>Log in</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -40,13 +41,13 @@
 		<div class="row"> 
             
                             <div class="col-md-4 col-md-offset-2">
-                                <a href="connexion.php" class="thumbnail"> 
+                                <a href="connexion.php?type=demandeur" class="thumbnail"> 
                                 <img src="images/crowdeur.jpg" alt="user" src=" style="width: 100%; display: block;">
                                 <h4 class="text-center">A Requester</h4>
                                 </a> 
                             </div>
                             <div class="col-md-4 col-md-offset-1">
-                                <a href="connexion.php" class="thumbnail"> 
+                                <a href="connexion.php" class="thumbnail" > 
                                 <img src="images/demandeur.jpg" alt="user" src=" style="width: 100%; display: block;">
                                 <h4 class="text-center">A Crowder</h4>
                                 </a> 

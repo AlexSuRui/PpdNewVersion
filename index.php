@@ -14,7 +14,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>NCSP | Accueil</title>
+    <title>Accueil</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -92,45 +92,10 @@
                 <div class="container">
                   <div class="row" >
 
-                    <div class="col-md-10 col-md-offset-1 full-height js-full-height">
+                    <div class="col-md-10 col-md-offset-1 full-height js-full-height col-xs-10">
 
                       <div class="fh5co-cover-intro">
-                        <div class="col-md-12 ">
-                            <div id="Carousel" class="carousel slide" data-ride="carousel" data-interval="2800" >
-                              <div class="carousel-inner">                    
-                                  <div class="item active">
-                                      <div class="row">
-                                              <div class="col-md-2"><a href="#" class="thumbnail"><img src="assets/images/1.jpg" alt="Image" style="with: 250px; height: 125px;"></a></div>
-                                              <div class="col-md-2"><a href="#" class="thumbnail"><img src="assets/images/2.jpg" alt="Image" style="with: 250px; height: 125px;"></a></div>
-                                              <div class="col-md-2"><a href="#" class="thumbnail"><img src="assets/images/3.jpg" alt="Image" style="with: 250px; height: 125px;"></a></div>
-                                              <div class="col-md-2"><a href="#" class="thumbnail"><img src="assets/images/4.jpg" alt="Image" style="with: 250px; height: 125px;"></a></div>
-                                              <div class="col-md-2"><a href="#" class="thumbnail"><img src="assets/images/6.jpg" alt="Image" style="with: 250px; height: 125px;"></a></div>
-                                              <div class="col-md-2"><a href="#" class="thumbnail"><img src="assets/images/7.jpg" alt="Image" style="with: 250px; height: 125px;"></a></div>
-                                      </div><!--.row-->
-                                  </div><!--.item-->
-                                  <div class="item">
-                                      <div class="row">
-                                              <div class="col-md-2"><a href="#" class="thumbnail"><img src="assets/images/8.jpg" alt="Image" style="with: 250px; height: 125px;"></a></div>
-                                              <div class="col-md-2"><a href="#" class="thumbnail"><img src="assets/images/9.jpg" alt="Image" style="with: 250px; height: 125px;"></a></div>
-                                              <div class="col-md-2"><a href="#" class="thumbnail"><img src="assets/images/3.jpg" alt="Image" style="with: 250px; height: 125px;"></a></div>
-                                              <div class="col-md-2"><a href="#" class="thumbnail"><img src="assets/images/2.jpg" alt="Image" style="with: 250px; height: 125px;"></a></div>
-                                              <div class="col-md-2"><a href="#" class="thumbnail"><img src="assets/images/1.jpg" alt="Image" style="with: 250px; height: 125px;"></a></div>
-                                              <div class="col-md-2"><a href="#" class="thumbnail"><img src="assets/images/4.jpg" alt="Image" style="with: 250px; height: 125px;"></a></div>
-                                      </div><!--.row-->
-                                  </div><!--.item-->
-                                  <div class="item">
-                                      <div class="row">
-                                              <div class="col-md-2"><a href="#" class="thumbnail"><img src="assets/images/7.jpg" alt="Image" style="with: 250px; height: 125px;"></a></div>
-                                              <div class="col-md-2"><a href="#" class="thumbnail"><img src="assets/images/9.jpg" alt="Image" style="with: 250px; height: 125px;"></a></div>
-                                              <div class="col-md-2"><a href="#" class="thumbnail"><img src="assets/images/8.jpg" alt="Image" style="with: 250px; height: 125px;"></a></div>
-                                              <div class="col-md-2"><a href="#" class="thumbnail"><img src="assets/images/3.jpg" alt="Image" style="with: 250px; height: 125px;"></a></div>
-                                              <div class="col-md-2"><a href="#" class="thumbnail"><img src="assets/images/1.jpg" alt="Image" style="with: 250px; height: 125px;"></a></div>
-                                              <div class="col-md-2"><a href="#" class="thumbnail"><img src="assets/images/2.jpg" alt="Image" style="with: 250px; height: 125px;"></a></div>
-                                      </div><!--.row-->
-                                  </div><!--.item-->   
-                              </div>
-                            </div>
-                        </div>
+
                         <h3 class="cover-text-lead wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">Enrichissement sémantique des images biomédicales</h3>
                         <div class="fh5co-post wow fadeInLeft"  data-wow-duration="1s" data-wow-delay="1.1s">
                           <img src ="images/bg.jpg" height="250px" width="750px">

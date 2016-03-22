@@ -88,8 +88,17 @@
           <div class="row">
             <div class="col-xs-8">
               <div class="checkbox icheck">
-                <label>
-					<a href="enregistrements.php" class="text-center">Register a new membership</a>
+              <label>
+          <?php 
+            if (isset($_GET["type"]) && $_GET['type'] == 'demandeur') 
+            {
+          ?>
+            <a href="enregistrement.php?type=demandeur" class="text-center">Register a new membership</a>
+          <?php 
+            }else{
+          ?>
+            <a href="enregistrement.php" class="text-center">Register a new membership</a>
+          <?php } ?>
                 </label>
               </div>
             </div><!-- /.col -->

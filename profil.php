@@ -188,6 +188,18 @@
                   </form>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
+              <div class="box box-primary" style="width: 300px;">
+                <div class="box-body box-profile" >
+                  <h3 class="profile-username text-center">History</h3>
+
+                  <ul class="list-group list-group-unbordered">
+                   <li class="list-group-item">
+                       <a href="index.php"> <b>My tasks</b> </a>
+                    </li>
+                  </ul>
+
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
             </div><!-- /.col -->
             <div class="col-md-7 col-md-offset-2" >
               <div class="nav-tabs-custom "style="border:1px solid #d0d0d0;">

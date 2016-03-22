@@ -2,7 +2,7 @@
         <div class="pull-right hidden-xs">
           <b>Version</b> 1.0 beta
         </div>
-        <strong>Copyright &copy; 2016-2017 <a href="http://NCSP.com">NCSP idv</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2016-2017 </strong> All rights reserved.
       </footer>
     </div><!-- ./wrapper -->
 
