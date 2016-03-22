@@ -37,6 +37,7 @@ body {
     min-width: 320px;
     float: left;
     width: 100%;
+    height: 100%;
   }
 }
 
@@ -882,7 +883,7 @@ a:hover .lnk-icon-right {
 */
 .fh5co-cover {
   position: relative;
-  min-height: 800px;
+  min-height: 100%;
 }
 .fh5co-cover .fh5co-cover-text {
   position: relative;
@@ -890,11 +891,13 @@ a:hover .lnk-icon-right {
 }
 .fh5co-cover .fh5co-cover-text .full-height {
   display: table;
+  height: 100px;
   min-height: 800px;
 }
 .fh5co-cover .fh5co-cover-text .full-height .fh5co-cover-intro {
   display: table-cell;
   vertical-align: middle;
+  height: 100px;
   min-height: 800px;
 }
 .fh5co-cover .fh5co-cover-text .cover-text-lead {

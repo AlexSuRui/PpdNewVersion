@@ -343,6 +343,7 @@ a:focus {
 .content-header > .breadcrumb > li + li:before {
   content: '>\00a0';
 }
+
 @media (max-width: 991px) {
   .content-header > .breadcrumb {
     position: relative;
@@ -403,6 +404,7 @@ a:focus {
     top: 0;
     right: 40px;
   }
+
 }
 /*
  * Component: Sidebar
@@ -967,6 +969,7 @@ a:focus {
     color: #444!important;
   }
 }
+
 .navbar-nav > .notifications-menu > .dropdown-menu > li.footer > a:hover,
 .navbar-nav > .messages-menu > .dropdown-menu > li.footer > a:hover,
 .navbar-nav > .tasks-menu > .dropdown-menu > li.footer > a:hover {
@@ -4730,4 +4733,7 @@ table.text-center th {
   .table-responsive > .table tr td {
     white-space: normal!important;
   }
+
+
+
 }

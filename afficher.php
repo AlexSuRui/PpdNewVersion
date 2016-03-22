@@ -72,16 +72,6 @@
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <section class="content-header">
-          <h1>
-            image
-          </h1>
-          <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li>demande</li>
-			<li class="active"><?php echo $Image->Nom; ?></li>
-          </ol>
-        </section>
 
         <!-- Main content -->
         <section class="content">
@@ -94,9 +84,7 @@
 		ecrireErreur($erreur);
   ?>
       <div class="box">
-                <div class="box-header">
-                  <h3 class="box-title"><?php echo $Image->Nom; ?></h3>
-                </div><!-- /.box-header -->
+
 				<div class="box-body">
       <?php if ($Image->UserUID == $me->UID || $me->Administrateur) { ?>
       <div class="row">
@@ -130,14 +118,18 @@
       </div>
       <br/>
       <?php } ?>
-	  <center>
-      <img src=<?php echo '"'.$Image->Chemin.'"'; ?> width="60%" /> <br/>
-	  </center>
-      <br/>
-      <center>
-        Par <?php echo get_utilisateur($Image->UserUID); ?><br/>
-        <strong><?php echo $Image->Description; ?></strong>
-      </center>
+      </div>	
+      <div class="col-md-10 col-md-offset-1 col-xs-10" >	  
+      	  <center>
+	      	<img src=<?php echo '"'.$Image->Chemin.'"'; ?> width="60%" /> <br/>
+		  </center>
+	      <br/>
+	      <center>
+	        Par <?php echo get_utilisateur($Image->UserUID); ?><br/>
+	        <strong><?php echo $Image->Description; ?></strong>
+	      </center>
+      </div>
+
       <br/>
       <table class="table table-hover">
         <thead>
@@ -210,14 +202,13 @@
               <input type="radio" name="confiance" value="40" />
               <font color="#d9534f">Hésitant</font> </strong>
             </center>
-              <div class="btn-group" role="group">
-                <button type="submit" class="btn btn-success" name="annoter">Soumettre l'annotation</button>
+              <div class="col-md-2 col-md-offset-5 	btn-group " role="group">
+                <button type="submit" class="btn btn-success" name="annoter" >Soumettre l'annotation</button>
               </div>
           </form>
         </div>
       </div>
       <?php } ?>
-
 </div>
 
 </div>
