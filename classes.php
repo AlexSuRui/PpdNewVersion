@@ -201,4 +201,18 @@ class AnnotationExtraite extends Enrichissement {
 	
 }
 
+class Result {
+	public $DemandeUID, $Client, $Titre, $Verrouille;
+
+	public function __construct($aDemandeUID, $aUserUID, $aNom, $aVerrouille){
+		$this->DemandeUID =$aDemandeUID;
+		$this->Client = $aUserUID;
+		$this->Titre = $aNom;
+		$this->Verrouille = $aVerrouille;
+	}
+
+	public static function Echantillon () {
+		return new Result(1,5,"Demande de test",0);
+	}
+}
 ?>

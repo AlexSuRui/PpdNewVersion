@@ -6,7 +6,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- Ionicons -->
@@ -14,9 +14,8 @@
     <!-- Theme style -->
     <link href="css/profil/global.css" rel="stylesheet" type="text/css">
     <link href="css/profil/site.css" rel="stylesheet" type="text/css">
-    <link href="css/profil/jquery-ui-1.9.1.custom.css" rel="stylesheet" type="text/css">
    
-        <!-- DataTables -->
+	    <!-- DataTables -->
     <link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -26,26 +25,31 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
- <div class="wrapper">
-    <div class="header_1">
-        <div id="logo">
-        <a href="https://elite.crowdflower.com/"></a>
-        </div>
-        <div class="top-box">
-        <a href="https://elite.crowdflower.com/index.php?view=advertise"><img src="./CrowdFlower Elite_files/" border="0" style="display: none !important;"></a>        </div>
-        <div class="clear"></div> 
-    </div>
-    <div class="header_2 corner-all">
-        <ul>
-               <li><a href="index.php">Accueil</a></li>
+  <body>
+      <div class="wrapper">
+          <div class="header_1">
+                <div id="logo">
+                    <a href=""><img src="images/logoIDV.png" alt=""></a>
+                    <div class="top-box">
+                        
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="top-box">
+                           
+                </div>
+                <div class="clear"></div> 
+          </div>
+          <div class="header_2 corner-all">
+                <ul>
+                    <li><a href="index.php">Accueil</a></li>
                             <?php if(isset($me)) {?>
-                    <li><a href="profil.php" class="current">Profil</a></li>
+                    <li><a href="profil.php">Profil</a></li>
                     <li><a href="demandes.php">Tasks</a></li>
                             <?php } ?>
-                    <form class="form-horizontal" role="form" action="profil.php" method="post">        
-                            <button class="btn btn-success " type="submit"  name="deconnexion" style="float: right; margin-right: 10px;margin-top: 2px;">Se déconnecter</button>    
-                    </form>
-                        </ul>
-        <div class="clear"></div>
-    </div>
- </div>
+                </ul>
+                <div class="clear"></div>
+          </div>
+      </div>
+
+  </body>

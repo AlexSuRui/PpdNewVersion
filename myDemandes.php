@@ -11,14 +11,16 @@
 			$selected = $_POST["categorie"];
 		else
 			$selected = 0;
-		$demandes = get_demandes($selected);
+		
 		if (isset($_SESSION["utilisateur"]))
 			$me = $_SESSION["utilisateur"];
 		else
 			header('Location: index.php'); 
+		$result = get_result($me->UID);
 	?>
 
 <?php include('header.php'); ?>
+<body>
 <div class="wrapper">
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper" style="padding-top: 1.5em">
@@ -35,56 +37,40 @@
   
 	  <div class="box" style="border:1px solid #d0d0d0;">
 	                <div class="box-header">
-	                  	<div class="widget-main-title">Liste des demandes d'annotation</div>
+	                  	<div class="widget-main-title">Mes réalisations</div>
 	                </div><!-- /.box-header -->
-					<div class="row" style="margin:1em"><?php if ($me->Demandeur) { ?>
-						<div class="col-sm-3">
-							
-							<a style="margin-left: 10px;" href="demande.php" class="btn btn-success">Nouvelle image annotable</a>
-							
-						</div><?php } ?>
-						<div class="col-sm-4" style="float: right">
-							<form class="form-horizontal" role="form" action="demandes.php" method="post">
-							<select class="form-control" name="categorie" onchange="this.form.submit()">
-							  <option value=0>Toutes les catégories</option>
-							  <?php
-								foreach ($categories as $categorie) {
-									if ($selected == $categorie->UID)
-										echo "<option value=".$categorie->UID." selected>".$categorie->Nom."</option>";
-									else
-										echo "<option value=".$categorie->UID.">".$categorie->Nom."</option>";
-								}
-							?>
-							</select>
-						  </form>
-						</div>
-					</div>
 	                <div class="box-body">
 	                  <table id="example1" class="table table-bordered table-striped ">
 	                    <thead>
 	                      <tr>
 	                        <th>#</th>
-							<th>Nom</th>
-							<th>Description</th>
-							<th>Type</th>
-							<th>Demandeur</th>
+	                        <th colspan="5">View</th>
+							<th>Titre du projet</th>
+							<th>Client</th>
+							<th colspan="1">Etat de tâche</th>
 	                      </tr>
 	                    </thead>
 	                    <tbody>
 						   <?php 
-								foreach ($demandes as $demande) {
-									if ($demande->Verrouille == 1)
+								foreach ($result as $result) {
+									if ($result->Verrouille == 1)
 										echo '<tr class="danger">';
 									else
-										echo '<tr>';
-										
-									echo '
-									<td>'.$demande->UID.'</td>
-									<td><a href="afficher.php?uid='.$demande->UID.'">'.$demande->Nom.'</a></td>
-									<td>'.$demande->Description.'</td><td>'.get_categoriesSelongID($demande->TypeUID).'</td>
-									<td>'.get_utilisateur($demande->UserUID).'</td>
-									';
-									
+										echo '<tr>';	
+
+									echo '<td>'.$result->DemandeUID.'</td><td colspan="5"></td><td><a href="afficher.php?uid='.$result->DemandeUID.'">'.$result->Titre.'</a></td><td>'.$result->Client.'</td>';
+
+									switch ($result->Verrouille) {
+										case '0':
+											echo '<td>En attent</td>';
+											break;
+										case '1':
+											echo '<td>Validée</td>';
+											break;
+										default:
+											echo '<td>Refusée</td>';
+											break;
+											}
 									echo '</tr>';
 								}
 							?>
@@ -98,4 +84,4 @@
 	        </section><!-- /.content -->
 	      </div><!-- /.content-wrapper -->
 </div>      
-<?php include('footer.php'); ?>
+</body>

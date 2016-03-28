@@ -157,60 +157,61 @@
 		</div>
 		<div style="display:table-cell; padding-left:20px">
 		<!-- Content -->
-		<div class="widget-main-title">Dashboard</div>
+		<div class="widget-main-title">Setting</div>
 		<div class="widget-content">
 			<div class="admin-info">
-		        <div class="title"><?php echo $me2->Nom." ".$me2->Prenom; ?></div>
-
-		        <div>Member Since: Feb 18, 2016</div>
-		        <div>Membership: <strong> <?php if ($me2->Demandeur == 1) { ?>
-						   Demandeur
+		        <div class="title"><br><?php echo $me2->Nom." ".$me2->Prenom; ?></div>
+		        <div>
+		        <?php if ($me2->Demandeur == 1) { ?>
+						  profil Demandeur
 						  <?php } else { ?>
-						   Contributeur
-						  <?php } ?> </strong>
+						  profil Contributeur
+						  <?php } ?>
 				</div>
-		    </div>
-		    <div class="calendar">
-		        <div class="top corner-top">Mar</div>
-		        <div class="mid">Sunday</div>
-		        <div class="bottom corner-bottom">27</div>
 		    </div>
 		    <div class="clear"></div>
 		</div>
-		<div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
-			<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
-		    	<li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="tab-1" aria-labelledby="ui-id-1" aria-selected="true">
-		    		<a href="#" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-1">Summary</a>
-		    	</li>
-		        <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="tab-3" aria-labelledby="ui-id-2" aria-selected="false">
-		        	<a href="#" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-2">Login Failures</a>
-		        </li>
-
-		    </ul>
-		</div> 
-		<div id="tab-1" aria-labelledby="ui-id-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="true" aria-hidden="false" style="margin-top: 1em; min-height: 200px;">
-			<table width="100%">
-				<tbody>
-					<tr>
-				    	<td valign="top" width="50%">
-						    <div class="widget-title">Earning Balance Stats</div>
-						    <div class="widget-content">
-						    <table width="100%" cellpadding="4" >
-						        <tbody>
-						        <tr>
-						            <td width="130">
-						            Balance:</td>
-						            <td>$0.0000</td>
-						        </tr>
-						    	</tbody>
-						    </table>    
-						    </div>  
-				        </td>
-				        <td valign="top">
-				        </td>
-				    </tr>
-				</tbody>
-			</table>
+		<div class="widget-main-title">Information Personnel</div>
+		<div class="widget-content">
+			<div class="setting-info">
+				<form role="form" action="demande.php" method="post"  enctype="multipart/form-data">
+							<ul class="form-style-1" style="margin-left: 20%;">								
+							    <li>
+							    	<label>User name <span class="required">*</span></label>
+							    	<input type="text" name="identifiant" class="field-divided" value="<?php echo $me2->Identifiant; ?>" readonly="readonly" />&nbsp;
+							    </li>
+							    <li>
+							        <label>Actual Password <span class="required">*</span></label>
+							        <input type="password" name="exMotDePasse" class="field-divided" placeholder="Mot de passe actuel" />
+							    </li>
+							    <li>
+							        <label>New Password <span class="required">*</span></label>
+							        <input type="password" name="motDePasse" class="field-divided" placeholder="Nouveau mot de passe" />
+							    </li>
+							    <li>
+							        <label>Retype Password <span class="required">*</span></label>
+							        <input type="password" name="confirmerMotDePasse" class="field-divided" placeholder="Confirmez votre nouveau mot de passe" />
+							    </li>
+							    <li>
+							    	<label>Email <span class="required">*</span></label>
+							    	<input type="email" name="email" class="field-divided" value="<?php echo $me2->Email; ?>" />&nbsp;
+							    </li>
+							    <li>
+							    	<label>Statut <span class="required">*</span></label>
+								    <select name="statut" onchange="this.form.submit()">
+								        <option value="Expert" <?php echo $me2->Statut == "Expert" ? "selected='selected'": "" ?>>Expert</option>
+										<option value="Student" <?php echo $me2->Statut == "Student" ? "selected=\"selected\"": "" ?>>Student</option>
+										<option value="Other" <?php echo $me2->Statut == "Other" ? "selected='selected'" : "" ?>>Other</option>
+								    </select>
+							    </li>
+							    <li>
+							    	
+							        <input type="submit" value="Submit" />
+							    </li>
+							</ul>
+						</form>
+				    </div>
+		    </div>
 		</div>
   </div>
 </body>

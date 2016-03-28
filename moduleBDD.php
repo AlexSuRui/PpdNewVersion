@@ -986,6 +986,24 @@ function get_categories() {
     }
 }
 
+function get_categoriesSelongID($CategorieUID){
+    global $connexion, $DEBUG, $message, $erreur;
+
+    $requete = "SELECT * FROM CATEGORIE WHERE CategorieUID = '".$CategorieUID."'";
+    $categories;
+    if ($resultats = mysqli_query($connexion, $requete)) {
+        if ($DEBUG)
+            $message .= mysqli_num_rows($resultats)." catégories retrouvés.<br/>";
+        while ($tuple = mysqli_fetch_assoc($resultats)) {
+        $categories=$tuple["Nom"];
+        }
+        return $categories;
+    } else {
+        if ($DEBUG)
+            $erreur .= "Impossible d'effectuer la requête :<br/>".$requete."<br/>";
+        return null;
+    }
+}
 // MANIPULATION DES DEMANDES
 
 function get_demande($DemandeUID) {
@@ -1067,7 +1085,7 @@ function get_demandes($CategorieUID = 0, $Limit = 0, $Start = 0) {
     }
 }
 
-function getCurrentUserDemande($id = 1) {
+function getCurrentUserDemande($id) {
 	global $connexion, $DEBUG, $message, $erreur;
 	$requete = "SELECT * FROM `imageannotable` join `demande` ON `imageannotable`.`DemandeUID` = `demande`.`DemandeUID` WHERE UserUID = ".$id;
 	$demandes = array();
@@ -1085,6 +1103,8 @@ function getCurrentUserDemande($id = 1) {
         return null;
     }
 }
+
+
 function get_images_annotables($CategorieUID = 0, $Limit = 0, $Start = 0) {
     global $connexion, $DEBUG, $message, $erreur;
 	
@@ -1209,4 +1229,24 @@ function get_annotations($DemandeUID, $userUID = 0) {
     }
 }
 
+function get_result($userID) {
+    global $connexion, $DEBUG, $message, $erreur;
+
+    $requete = "SELECT * FROM DEMANDE,CONTRIBUTION WHERE CONTRIBUTION.UserUID = $userID and CONTRIBUTION.DemandeUID = DEMANDE.DemandeUID" ;
+    $result = array();
+    if ($resultats = mysqli_query($connexion, $requete)) {
+        if ($DEBUG)
+            $message .= mysqli_num_rows($resultats)." result référencées.<br/>";
+        while ($tuple = mysqli_fetch_assoc($resultats)) {
+            $demande = get_demande ($tuple["DemandeUID"]);
+            $utilisateur = get_utilisateur($demande->UserUID);
+            $result[] = new Result ($demande->UID, $utilisateur->Identifiant, $tuple["Nom"], $tuple["Verrouille"]);
+        }
+        return $result;
+    } else {
+        if ($DEBUG)
+            $erreur .= "Impossible d'effectuer la requête :<br/>".$requete."<br/>";
+        return null;
+    }
+}
 ?>

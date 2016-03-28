@@ -29,19 +29,24 @@
 			if ($Image != null) {
 			$DirectoryURL = $uploaddir ."/".$Image->UID;
 			$FileURL = $uploaddir ."/".$Image->UID."/".basename($_FILES['image']['name']);
-			if (mkdir($DirectoryURL, 0777, true)) {
-				if (move_uploaded_file($_FILES['image']['tmp_name'], $FileURL)) {
-					$message .= "Le fichier est valide.<br/>";
-					$Image->Chemin = $FileURL;
-					maj_image_annotable($Image);
-					header('Location: demandes.php');
+			if (is_dir($DirectoryURL)){
+				rmdir($DirectoryURL);
+			}else
+			{
+				if (mkdir($DirectoryURL, 0777, true)) {
+					if (move_uploaded_file($_FILES['image']['tmp_name'], $FileURL)) {
+						$message .= "Le fichier est valide.<br/>";
+						$Image->Chemin = $FileURL;
+						maj_image_annotable($Image);
+						header('Location: demandes.php');
+						} else {
+						$erreur .= "Attaque potentielle par téléchargement de fichiers.<br/>";
+						supprimer_image_annotable($Image);
+						}   
 					} else {
-					$erreur .= "Attaque potentielle par téléchargement de fichiers.<br/>";
-					supprimer_image_annotable($Image);
-					}   
-				} else {
-					$erreur .= "Erreur lors de la création du dossier.<br/>";
-					supprimer_image_annotable($Image);
+						$erreur .= "Erreur lors de la création du dossier.<br/>";
+						supprimer_image_annotable($Image);
+					}
 				}
 			}
 			else
@@ -52,79 +57,64 @@
 	?>
 
 <?php include('header.php'); ?>
-
-      <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-     <!--    <section class="content-header">
-          <h1>
-            Soumettre une demande
-          </h1>
-          <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li>demande</li>
-			<li class="active">ajouter</li>
-          </ol>
-        </section> -->
-
+<div class="wrapper">
+	<div class="content-wrapper" style="padding-top: 1.5em">
         <!-- Main content -->
         <section class="content">
 		 <div class="row">
             <div class="col-xs-12">
-  <?php
-	if ($message != "")
-		ecrireMessage($message);
-	if ($erreur != "")
-		ecrireErreur($erreur);
-  ?>
-    <div class="box">
-                <div class="box-header">
-                  <h3 class="box-title">Veuillez compléter ce formulaire</h3>
-                </div><!-- /.box-header -->
-				<div class="box-body">
-  <form class="form-horizontal" role="form" action="demande.php" method="post"  enctype="multipart/form-data">
-    <?php
-        echoInput("nom", "Nom :", "Entrez un nom");
-        echoInput("description", "Description :", "Entrez une description");
-        ?>
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="'.$id.'">Catégorie :</label>
-      <div class="col-sm-10">
-        <select class="form-control" name="categorie" onchange="this.form.submit()">
-          <?php
-            foreach ($categories as $categorie) {
-                if ($selected == $categorie->UID)
-                    echo "<option value=".$categorie->UID." selected>".$categorie->Nom."</option>";
-                else
-                    echo "<option value=".$categorie->UID.">".$categorie->Nom."</option>";
-            }
-            ?>
-        </select>
-      </div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-2" for="image">Sélectionnez une image à publier</label>
-		<div class="col-sm-10">
-			<input type="file" name="image" id="image">
-		</div>
-	</div>
-      <strong>Masquer les contributions :</strong>
-      <input type="radio" name="masquer" value="1" />
-      Oui
-      <input type="radio" name="masquer" value="0" checked />
-      Non
-    </center>
-    <br/>
-    <div class="col-sm-2" role="group">
-        <button type="submit" class="btn btn-success btn-lg" name="submit">Soumettre la demande</button>
-    </div>
-  </form>
+			  <?php
+				if ($message != "")
+					ecrireMessage($message);
+				if ($erreur != "")
+					ecrireErreur($erreur);
+			  ?>
+			      <!-- Content Wrapper. Contains page content -->
+			    <div class="box" style="border:1px solid #d0d0d0;">
+					<div class="box-header">
+				        <div class="widget-main-title">Nouvelle tache</div>
+				    </div>
+				    <div class="box-body">
+				    	<form role="form" action="demande.php" method="post"  enctype="multipart/form-data">
+							<ul class="form-style-1">
+								
+							    <li><label>Title de tâche <span class="required">*</span></label><input type="text" name="nom" class="field-divided" placeholder="Title de tâche" />&nbsp;</li>
+							    <li>
+							        <label>Description <span class="required">*</span></label>
+							        <input type="text" name="description" class="field-long" placeholder="Description de cette tâche" />
+							    </li>
+							    <li>
+							    	<label>Categorie <span class="required">*</span></label>
+							        <select  name="categorie" onchange="this.form.submit()">
+							          <?php
+							            foreach ($categories as $categorie) {
+							                if ($selected == $categorie->UID)
+							                    echo "<option value=".$categorie->UID." selected>".$categorie->Nom."</option>";
+							                else
+							                    echo "<option value=".$categorie->UID.">".$categorie->Nom."</option>";
+							            }
+							            ?>
+							        </select>
+							    </li>
+							    <li>
+							        <label for="image">Sélectionnez une image à publier <span class="required">*</span></label>
+									<input type="file" name="image" id="image">
+							    </li>
+							    <li>
+							    	<label> Masquer les contributions </label>
+							    	<input type="radio" name="masquer" value="1" />Oui
+								    <input type="radio" name="masquer" value="0" checked />Non
+							    </li>
+							    <li>
 
-</div>
-</div><!-- /.box -->
-			</div><!-- /.col -->
-          </div><!-- /.row -->
-        </section><!-- /.content -->
-      </div><!-- /.content-wrapper -->
-      
+							        <button type="submit" class="btn btn-success btn-lg" name="submit">Soumettre la demande</button>
+							    </li>
+							</ul>
+						</form>
+				    </div>
+			    </div> 
+			</div>
+		</div>
+		</section>	
+</div>      
 <?php include('footer.php'); ?>
