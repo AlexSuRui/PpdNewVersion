@@ -39,7 +39,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Log in</title>
+    <title>IDV | Log in</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -75,35 +75,35 @@
         <a href="index.php"><img src="images/logoIDV.png" /></a>
       </div><!-- /.login-logo -->
       <div class="login-box-body">
-        <p class="login-box-msg">Sign in to start your session</p>
+        <p class="login-box-msg">Connectez vous</p>
         <form action="connexion.php" method="post">
           <div class="form-group has-feedback">
             <input name="identifiant" type="text" class="form-control" placeholder="Login">
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <input name="motDePasse" type="password" class="form-control" placeholder="Password">
+            <input name="motDePasse" type="password" class="form-control" placeholder="Mot de passe">
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           <div class="row">
-            <div class="col-xs-8">
+            <div class="col-xs-7">
               <div class="checkbox icheck">
               <label>
           <?php 
             if (isset($_GET["type"]) && $_GET['type'] == 'demandeur') 
             {
           ?>
-            <a href="enregistrement.php?type=demandeur" class="text-center">Register a new membership</a>
+            <a href="enregistrement.php?type=demandeur" class="text-center">S'inscrire</a>
           <?php 
             }else{
           ?>
-            <a href="enregistrement.php" class="text-center">Register a new membership</a>
+            <a href="enregistrement.php" class="text-center">S'inscrire</a>
           <?php } ?>
                 </label>
               </div>
             </div><!-- /.col -->
             <div class="col-xs-4">
-              <button type="submit" name="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+              <button type="submit" name="submit" class="btn btn-primary btn-long" >Se connecter</button>
             </div><!-- /.col -->
           </div>
         </form>

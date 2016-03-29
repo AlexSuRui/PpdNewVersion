@@ -423,7 +423,7 @@ font-size:10px;
 .admin-info{
 background: no-repeat;
 min-height:104px;
-padding-left:114px;
+padding:10px;
 float:left;
 }
 
@@ -1062,6 +1062,7 @@ button{
 
 /*======================IMAGE ANNOTATION=====================*/
 #imgAnnotation{
+    margin-top: 2em;
     width: 450px;
 }
 #tbInfo, #tbAnno,#boxAnno,#boxVerro{
@@ -1072,4 +1073,12 @@ button{
 }
 #boxAff{
     min-height: 600px;
+}
+#view{
+    width: 50px;
+    height: 50px;
+}
+#imgProfil{
+    width: 100px;
+    height: 100px;
 }

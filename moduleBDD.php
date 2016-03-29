@@ -1229,6 +1229,24 @@ function get_annotations($DemandeUID, $userUID = 0) {
     }
 }
 
+function get_DemandesByUser($userID){
+    global $connexion, $DEBUG, $message, $erreur;
+
+    $requete = "SELECT * FROM DEMANDE WHERE DEMANDE.UserUID=$userID";
+    $demandes = array();
+    if ($resultats = mysqli_query($connexion, $requete)) {
+        if ($DEBUG)
+            $message .= mysqli_num_rows($resultats)." demandes référencées.<br/>";
+        while ($tuple = mysqli_fetch_assoc($resultats)) {
+            $demandes[] = new Demande ($tuple["DemandeUID"], $tuple["Nom"], $tuple["Description"], $tuple["DatePublication"],$tuple["Verrouille"], $tuple["MasquerLesContributions"], $userID, $tuple["CategorieUID"],$tuple["TypeUID"]);
+        }return $demandes;
+    } else {
+        if ($DEBUG)
+            $erreur .= "Impossible d'effectuer la requête :<br/>".$requete."<br/>";
+        return null;
+    }
+}
+
 function get_result($userID) {
     global $connexion, $DEBUG, $message, $erreur;
 
@@ -1238,9 +1256,9 @@ function get_result($userID) {
         if ($DEBUG)
             $message .= mysqli_num_rows($resultats)." result référencées.<br/>";
         while ($tuple = mysqli_fetch_assoc($resultats)) {
-            $demande = get_demande ($tuple["DemandeUID"]);
+            $demande = get_demande($tuple["DemandeUID"]);
             $utilisateur = get_utilisateur($demande->UserUID);
-            $result[] = new Result ($demande->UID, $utilisateur->Identifiant, $tuple["Nom"], $tuple["Verrouille"]);
+            $result[] = new Result ($demande->UID, $utilisateur->Identifiant, $tuple["Nom"], $tuple["Verrouille"], $tuple["DatePublication"]);
         }
         return $result;
     } else {

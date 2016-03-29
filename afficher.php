@@ -153,7 +153,7 @@
 																			else
 																				echo '<tr>';
 																				
-																			echo "<td>".get_utilisateur($annotation->UserUID)."</td><td>";
+																			echo "<td>".get_utilisateur($annotation->UserUID)."</td>";
 
 																			$last = $annotation->UserUID;
 
@@ -165,11 +165,11 @@
 																			
 																		if ($annotation->UserUID == $me->UID and $annotation->Verrouille == 0 and $Image->Verrouille == 0)	
 																			echo '<a href="afficher.php?uid='.$_GET["uid"].'&ano='.$annotation->UID.'"<span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>';
-																		echo $annotation->Texte;
+																		echo "<td>".$annotation->Texte."</td><td>".$annotation->Confiance."</td>";
 																		}
 																	}
 
-																	echo '</td></tr>';	
+																	echo '</tr>';	
 						  										?>	
 						  										</tbody>
 						  									</table>

@@ -127,37 +127,41 @@
 			<ul class="menubarlist">
 				<li id="1">
 			        <div class="widget-title">
-			                        Global
+			                        Globale
 			        </div>
 			        <ul>
-			            <li><a href="profil.php">Withdraw</a></li>
+			            <li><a href="profil.php">Information</a></li>
 			        </ul>
 				</li>
 				<li id="2">
 					<div class="membermenu">
 						<div class="mid">
-							Settings
+							Paramètre
 						</div>
 					</div>
 					<ul>
-						<li><a href="profilSetting.php">Personnel Setting</a></li>
+						<li><a href="profilSetting.php">Paramètre personnel </a></li>
 					</ul>
 				</li>
 				<li>
 					<div class="membermenu">
 						<div class="mid">
-							Historie
+							Historique
 						</div>
 					</div>
 					<ul>
-						<li><a href="myDemandes.php">Mes réalisations</a></li>
+						<?php if ($me2->Demandeur == 1) { ?>
+						<li><a href="myDemandes.php">Mes demandes</a></li>
+						<?php }else{ ?>
+						<li><a href="myDemandes.php">Mes réalisation</a></li>
+						<?php } ?>
 					</ul>
 				</li>
 			</ul>
 		</div>
 		<div style="display:table-cell; padding-left:20px">
 		<!-- Content -->
-		<div class="widget-main-title">Setting</div>
+		<div class="widget-main-title">Paramètre</div>
 		<div class="widget-content">
 			<div class="admin-info">
 		        <div class="title"><br><?php echo $me2->Nom." ".$me2->Prenom; ?></div>
@@ -177,19 +181,19 @@
 				<form role="form" action="demande.php" method="post"  enctype="multipart/form-data">
 							<ul class="form-style-1" style="margin-left: 20%;">								
 							    <li>
-							    	<label>User name <span class="required">*</span></label>
+							    	<label>Identifiant <span class="required">*</span></label>
 							    	<input type="text" name="identifiant" class="field-divided" value="<?php echo $me2->Identifiant; ?>" readonly="readonly" />&nbsp;
 							    </li>
 							    <li>
-							        <label>Actual Password <span class="required">*</span></label>
+							        <label>Mot de passe actuel <span class="required">*</span></label>
 							        <input type="password" name="exMotDePasse" class="field-divided" placeholder="Mot de passe actuel" />
 							    </li>
 							    <li>
-							        <label>New Password <span class="required">*</span></label>
+							        <label>Nouveau mot de passe <span class="required">*</span></label>
 							        <input type="password" name="motDePasse" class="field-divided" placeholder="Nouveau mot de passe" />
 							    </li>
 							    <li>
-							        <label>Retype Password <span class="required">*</span></label>
+							        <label>Confirmer mot de passe<span class="required">*</span></label>
 							        <input type="password" name="confirmerMotDePasse" class="field-divided" placeholder="Confirmez votre nouveau mot de passe" />
 							    </li>
 							    <li>
@@ -200,13 +204,13 @@
 							    	<label>Statut <span class="required">*</span></label>
 								    <select name="statut" onchange="this.form.submit()">
 								        <option value="Expert" <?php echo $me2->Statut == "Expert" ? "selected='selected'": "" ?>>Expert</option>
-										<option value="Student" <?php echo $me2->Statut == "Student" ? "selected=\"selected\"": "" ?>>Student</option>
-										<option value="Other" <?php echo $me2->Statut == "Other" ? "selected='selected'" : "" ?>>Other</option>
+										<option value="Student" <?php echo $me2->Statut == "Student" ? "selected=\"selected\"": "" ?>>Etudiant</option>
+										<option value="Other" <?php echo $me2->Statut == "Other" ? "selected='selected'" : "" ?>>Autre</option>
 								    </select>
 							    </li>
 							    <li>
 							    	
-							        <button type="submit" name="submit" class="btn btn-danger">Submit</button>
+							        <button type="submit" name="submit" class="btn btn-danger">Envoyer</button>
 							    </li>
 							</ul>
 						</form>

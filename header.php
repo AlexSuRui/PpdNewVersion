@@ -40,7 +40,7 @@
                <li><a href="index.php">Accueil</a></li>
                             <?php if(isset($me)) {?>
                     <li><a href="profil.php" class="current">Profil</a></li>
-                    <li><a href="demandes.php">Tasks</a></li>
+                    <li><a href="demandes.php">Tâche</a></li>
                             <?php } ?>
                     <form class="form-horizontal" role="form" action="profil.php" method="post">        
                             <button class="btn btn-success " type="submit"  name="deconnexion" style="float: right; margin-right: 10px;margin-top: 2px;">Se déconnecter</button>    

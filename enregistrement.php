@@ -102,16 +102,16 @@
 				ecrireErreur($erreur);
 		?>
 		<div class="register-box-body">
-        <p class="login-box-msg">Register a <strong>
+        <p class="login-box-msg">S'inscrire comme <strong>
 		<?php if (isset($_GET["type"]) && $_GET['type'] == 'demandeur') 
 				{ 
 					echo "requester";
 				}else{
 					echo "crouder";
-				} ?></strong> new membership</p>
+				} ?></strong></p>
         <form action="enregistrement.php" method="post">
           <div class="form-group has-feedback">
-            <input name="identifiant" type="text" class="form-control" placeholder="User name *">
+            <input name="identifiant" type="text" class="form-control" placeholder="Identifiant *">
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
@@ -119,34 +119,34 @@
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <input name="motDePasse" type="password" class="form-control" placeholder="Password *">
+            <input name="motDePasse" type="password" class="form-control" placeholder="Mot de passe *">
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <input name="confirmerMotDePasse" type="password" class="form-control" placeholder="Retype password *">
+            <input name="confirmerMotDePasse" type="password" class="form-control" placeholder="Confirmer mot de passe *">
             <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
           </div>
           <div class="row top-margin">
 			  <div class="form-group has-feedback col-sm-6">
-	            <input name="prenom" type="text" class="form-control" placeholder="First name">
+	            <input name="prenom" type="text" class="form-control" placeholder="Prenom">
 	          </div>
 			  <div class="form-group has-feedback col-sm-6">
-	            <input name="nom" type="text" class="form-control" placeholder="Last name">
+	            <input name="nom" type="text" class="form-control" placeholder="Nom">
 	          </div>
 	      </div>
 	       <div class="row top-margin">
 			  <div class="form-group has-feedback col-sm-6">
-	            <input name="institute" type="text" class="form-control" placeholder="institute">
+	            <input name="institute" type="text" class="form-control" placeholder="Institut">
 	          </div>
 			  <div class="form-group has-feedback col-sm-6">
-	            <input name="codeIDV" type="text" class="form-control" placeholder="code *">
+	            <input name="codeIDV" type="text" class="form-control" placeholder="code *" pattern="idv">
 	          </div>
 	      </div>
 		  <div class="form-group has-feedback">
 			<select name="statut" class="form-control"  id="statut *">
 				<option value="Expert" selected="selected">Expert</option>
-				<option value="Student">Student</option>
-				<option value="Other">Other</option>
+				<option value="Student">Etudiant</option>
+				<option value="Other">Autre</option>
 			</select>
 			<?php if (isset($_GET["type"]) && $_GET['type'] == 'demandeur') { ?>
               <input type="hidden" name="demandeur" value="1">
@@ -160,7 +160,7 @@
             <div class="col-xs-8">
               <div class="checkbox icheck">
                 <label>
-                  <input type="checkbox"> I agree to the <a href="#" data-toggle="modal" data-target="#myModal">terms</a>
+                  <input type="checkbox"> J'accepte les <a href="#" data-toggle="modal" data-target="#myModal">terms</a>
                 </label>
 				<!-- Modal -->
 				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -183,12 +183,12 @@
               </div>
             </div><!-- /.col -->
             <div class="col-xs-4">
-              <button type="submit" name="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+              <button type="submit" name="submit" class="btn btn-primary btn-block btn-flat">S'incrire</button>
             </div><!-- /.col -->
           </div>
         </form>
 
-        <a href="connexions.php" class="text-center">I already have a membership</a>
+        <a href="connexions.php" class="text-center">Je suis déja inscrit</a>
       </div><!-- /.form-box -->
     </div><!-- /.register-box -->
 
