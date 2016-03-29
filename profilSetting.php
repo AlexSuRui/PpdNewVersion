@@ -206,7 +206,7 @@
 							    </li>
 							    <li>
 							    	
-							        <input type="submit" value="Submit" />
+							        <button type="submit" name="submit" class="btn btn-danger">Submit</button>
 							    </li>
 							</ul>
 						</form>
