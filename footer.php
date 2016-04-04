@@ -1,26 +1,27 @@
-<footer class="main-footer">
+   <div class="wrapper"> 
+    <footer class="main-footer">
         <div class="pull-right hidden-xs">
-          <b>Version</b> 1.0 beta
+          <b>Version</b> 2.0 beta
         </div>
         <strong>Copyright &copy; 2016-2017 </strong> All rights reserved.
       </footer>
-    </div><!-- ./wrapper -->
-
+  </div>
     <!-- jQuery 2.1.4 -->
-    <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <!-- Bootstrap 3.3.5 -->
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <!-- FastClick -->
-    <script src="plugins/fastclick/fastclick.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="dist/js/app.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="dist/js/demo.js"></script>
-	<script src="plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
-    <!-- SlimScroll -->
-    <script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
-	<script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- BlowUp -->
+    <script src="js/blowup.js"></script>
+    <!-- File upload -->
+    <script src="js/jQuery-File-Upload-9.12.1"></script>
+    <script src="js/jquery.iframe-transport.js"></script>
+    <script src="js/jquery.ui.widget.js"></script>
+    <script>
+       $(document).ready(function () {
+        $("#imgAnnotation").blowup();
+    })
+    </script>
+<!-- 	<script>
       $(function () {
         $("#example1").DataTable();
         $('#example2').DataTable({
@@ -32,6 +33,6 @@
           "autoWidth": false
         });
       });
-    </script>
+    </script> -->
   </body>
 </html>

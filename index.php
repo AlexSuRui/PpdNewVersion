@@ -74,7 +74,7 @@
                           <li>
                             <a href="profil.php">
                               <?php 
-                                echo $me->Prenom." ".$me->Nom;
+                                echo $me->Identifiant;
                               ?>
                             </a>
                           </li>

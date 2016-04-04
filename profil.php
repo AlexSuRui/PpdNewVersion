@@ -123,103 +123,97 @@
 	<!-- Content -->
 		<div class="main_content corner-all">
 			<div style="display:table; width:100%">
-			<div style="display:table-cell; width:250px">
-			<ul class="menubarlist">
-				<li id="1">
-			        <div class="widget-title">
-			                        Globale
-			        </div>
-			        <ul>
-			            <li><a href="profil.php">Information</a></li>
-			        </ul>
-				</li>
-				<li id="2">
-					<div class="membermenu">
-						<div class="mid">
-							Paramètre
-						</div>
-					</div>
-					<ul>
-						<li><a href="profilSetting.php">Paramètre personnel </a></li>
+				<div style="display:table-cell; width:250px">
+					<ul class="menubarlist">
+						<li id="1">
+					        <div class="widget-title">
+					                        Globale
+					        </div>
+					        <ul>
+					            <li><a href="profil.php">Information</a></li>
+					        </ul>
+						</li>	
+						<li>
+							<div class="membermenu">
+								<div class="mid">
+									Historique
+								</div>
+							</div>
+							<ul>
+								<?php if ($me2->Demandeur == 1) { ?>
+								<li><a href="myDemandes.php">Mes demandes</a></li>
+								<?php }else{ ?>
+								<li><a href="myRealisation.php">Mes réalisation</a></li>
+								<?php } ?>
+							</ul>
+						</li>
 					</ul>
-				</li>
-				<li>
-					<div class="membermenu">
-						<div class="mid">
-							Historique
-						</div>
-					</div>
-					<ul>
-						<?php if ($me2->Demandeur == 1) { ?>
-						<li><a href="myDemandes.php">Mes demandes</a></li>
-						<?php }else{ ?>
-						<li><a href="myRealisation.php">Mes réalisation</a></li>
-						<?php } ?>
-					</ul>
-				</li>
-			</ul>
-		</div>
-		<div style="display:table-cell; padding-left:20px">
-		<!-- Content -->
-		<div class="widget-main-title">Tableau de bord</div>
-		<div class="widget-content">
-			<div class="admin-info">
-				<div class="row">
-					<div class="col-md-4">
-						<img src="images/user.png" id="imgProfil">
-					</div>
-					<div class="col-md-8">
-						<div class="title"><?php echo $me2->Nom." ".$me2->Prenom; ?></div>
-					        <div>Member Since: Feb 18, 2016</div>
-					        <div>Membership: <strong> <?php if ($me2->Demandeur == 1) { ?>
-									   Demandeur
-									  <?php } else { ?>
-									   Contributeur
-									  <?php } ?> </strong>
-						</div>
+				</div>
+				<div style="display:table-cell; padding-left:20px">
+					<!-- Content -->
+					<div class="widget-main-title">Tableau de bord</div>
+					<div class="widget-content">
+						<div class="admin-info">
+							<div class="row">
+								<div class="col-md-4">
+									<img src="images/user.png" id="imgProfil">
+								</div>
+								<div class="col-md-8">
+									<div class="title"><?php echo $me2->Nom." ".$me2->Prenom; ?></div>
+								        <div>Member Since: Feb 18, 2016</div>
+								        <div>Membership: <strong> <?php if ($me2->Demandeur == 1) { ?>
+												   Demandeur
+												  <?php } else { ?>
+												   Contributeur
+												  <?php } ?> </strong>
+									</div>
+								</div>
+							</div>
+					    </div>
+					    <div class="calendar" style="margin-right: 5%">
+					        <div class="top corner-top">Mar</div>
+					        <div class="mid">Mardi</div>
+					        <div class="bottom corner-bottom">29</div>
+					    </div>
+					    <div class="clear"></div>
+					    <div id="tab">
+					    	<ul id="myTab" class="nav nav-tabs">
+								   <li class="active">
+								      <a href="profil.php" data-toggle="tab">
+								         Information
+								      </a>
+								   </li>
+								   <li><a href="profilSetting.php" data-toggle="tab">Paramètre Personnel</a></li>
+								</ul>
+								<div id="myTabContent" class="tab-content">
+								   <div class="tab-pane fade in active" id="home">
+								      <table width="100%">
+										<tbody><tr>
+									    	<td valign="top" width="50%">
+									    <div class="widget-title">Earning Balance Stats</div>
+									    <div class="widget-content">
+									    <table width="100%" cellpadding="4">
+									        <tbody><tr>
+									            <td width="130">
+									            Balance:</td>
+									            <td>$0.0000</td>
+									        </tr>
+									    </tbody></table>    
+									    </div>   
+									        </td>
+									        <td valign="top">
+									        </td>
+									    </tr>
+									</tbody></table>
+								   </div>
+								   <div class="tab-pane fade" id="ios">
+								      
+								   </div>
+								</div>
+					    </div>
 					</div>
 				</div>
-		        
-		    </div>
-		    <div class="calendar" style="margin-right: 5%">
-		        <div class="top corner-top">Mar</div>
-		        <div class="mid">Mardi</div>
-		        <div class="bottom corner-bottom">29</div>
-		    </div>
-		    <div class="clear"></div>
-		</div>
-		<div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
-			<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
-		    	<li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="tab-1" aria-labelledby="ui-id-1" aria-selected="true">
-		    		<a href="#" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-1">Sommaire</a>
-		    	</li>
-
-
-		    </ul>
-		</div> 
-		<div id="tab-1" aria-labelledby="ui-id-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="true" aria-hidden="false" style="margin-top: 1em; min-height: 200px;">
-			<table width="50%" style="margin:1em">
-				<tbody>
-					<tr>
-				    	<td valign="top" width="50%" >
-						    <div class="widget-title">Niveau</div>
-						    <div class="widget-content">
-						    <table width="100%" cellpadding="4" >
-						        <tbody>
-						        <tr>
-						            <td width="130">
-						            Etudiant:</td>
-						            <td>0</td>
-						        </tr>
-						    	</tbody>
-						    </table>    
-						    </div>  
-				        </td>
-				        <td valign="top">
-				        </td>
-				    </tr>
-				</tbody>
-			</table>
-		</div>
+  			</div>
+  		</div>
   </div>
 </body>

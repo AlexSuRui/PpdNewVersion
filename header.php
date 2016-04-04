@@ -15,10 +15,6 @@
     <link href="css/profil/global.css" rel="stylesheet" type="text/css">
     <link href="css/profil/site.css" rel="stylesheet" type="text/css">
     <link href="css/profil/jquery-ui-1.9.1.custom.css" rel="stylesheet" type="text/css">
-   
-        <!-- DataTables -->
-    <link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css">
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -29,10 +25,10 @@
  <div class="wrapper">
     <div class="header_1">
         <div id="logo">
-        <a href="https://elite.crowdflower.com/"></a>
+        <a href="/"></a>
         </div>
         <div class="top-box">
-        <a href="https://elite.crowdflower.com/index.php?view=advertise"><img src="./CrowdFlower Elite_files/" border="0" style="display: none !important;"></a>        </div>
+        <a href=""><img src="" border="0" style="display: none !important;"></a>        </div>
         <div class="clear"></div> 
     </div>
     <div class="header_2 corner-all">

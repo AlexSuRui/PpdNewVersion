@@ -3,7 +3,6 @@
 		include "moduleBDD.php";
 		session_start();
 		connection(true);
-		
 		if (isset($_SESSION["utilisateur"]))
 			$me = $_SESSION["utilisateur"];
 		else
@@ -88,6 +87,7 @@
 					  			<div class="col-md-7 col-xs-10" >
 					  				<center>
 									 <img src=<?php echo '"'.$Image->Chemin.'"'; ?> id="imgAnnotation" />
+										
 									</center>
 						  		</div>
 						  		<div class="col-md-5 col-xs-10">
@@ -140,7 +140,7 @@
 																	 foreach ($annotations as $annotation) {			
 																		if ($Image->MasquerLesContributions == 0 or ($annotation->UserUID == $me->UID))
 																		{
-																		if($last != $annotation->UserUID) {
+																		if($last != $annotation->UID) {
 																			if ($first)
 																				$first = false;
 																			else
@@ -153,15 +153,15 @@
 																			else
 																				echo '<tr>';
 																				
-																			echo "<td>".get_utilisateur($annotation->UserUID)."</td>";
+																			echo "<td>".get_utilisateur($annotation->UserUID)->Identifiant."</td>";
 
-																			$last = $annotation->UserUID;
+																			$last = $annotation->UID;
 
 																		}
 																		if ($fanno)
 																			$fanno = false;
 																		else
-																			echo "; ";
+																			echo " ";
 																			
 																		if ($annotation->UserUID == $me->UID and $annotation->Verrouille == 0 and $Image->Verrouille == 0)	
 																			echo '<a href="afficher.php?uid='.$_GET["uid"].'&ano='.$annotation->UID.'"<span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>';
@@ -212,7 +212,7 @@
 										</div>
 												<?php } ?>
 						  				</div>
-						  				<?php } else { ?>
+						  				<?php } else if(!$me->Demandeur){ ?>
 						  				<div class="box"style="border:1px solid #d0d0d0;" id="boxAnno">
 						  					<div class="box-header">
 	                  							<div class="widget-title">Annoter l'image</div>
@@ -249,3 +249,4 @@
 		</div>
 	</div>
 </body>
+<?php include('footer.php'); ?>

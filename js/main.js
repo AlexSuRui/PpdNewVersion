@@ -155,21 +155,6 @@
 
 	};
 
-
-	// Magnific Popup
-	
-	var imagePopup = function() {
-		$('.image-popup').magnificPopup({
-			type: 'image',
-			removalDelay: 10,
-			titleSrc: 'title',
-			gallery:{
-				enabled:false
-			}
-		});
-	};
-	
-	
 	// Window Scroll
 	var windowScroll = function() {
 		var lastScrollTop = 0;
