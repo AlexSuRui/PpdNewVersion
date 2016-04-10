@@ -25,8 +25,8 @@ $(function ($) {
     // Default attributes
     var defaults = {
       round      : true,
-      width      : 200,
-      height     : 200,
+      width      : 300,
+      height     : 300,
       background : "#FFF",
       shadow     : "0 8px 17px 0 rgba(0, 0, 0, 0.2)",
       border     : "6px solid #FFF",
@@ -74,16 +74,16 @@ $(function ($) {
     $element.mousemove(function (e) {
 
       // Lens position coordinates
-      var lensX = e.pageX - $options.width / 2;
-      var lensY = e.pageY - $options.height / 2;
+      var lensX = e.pageX - $options.width/2;
+      var lensY = e.pageY - $options.height/2;
 
       // Relative coordinates of image
-      var relX = e.pageX - this.offsetLeft;
-      var relY = e.pageY - this.offsetTop;
+      var relX = (e.pageX - this.offsetLeft)/1.4;
+      var relY = (e.pageY - this.offsetTop)/1.6;
      
       // Zoomed image coordinates 
-      var zoomX = -Math.floor(relX / $element.width() * NATIVE_IMG.width - $options.width / 2);
-      var zoomY = -Math.floor(relY / $element.height() * NATIVE_IMG.height - $options.height / 2);
+      var zoomX = -Math.floor(relX / $element.width() * NATIVE_IMG.width - $options.width);
+      var zoomY = -Math.floor(relY / $element.height() * NATIVE_IMG.height - $options.height);
 
       var backPos = zoomX + "px " + zoomY + "px";
 

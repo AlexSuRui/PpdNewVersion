@@ -188,7 +188,6 @@
 		counter();
 		mobileMenuOutsideClick();
 		burgerMenu();
-		imagePopup();
 		offCanvass();
 
 

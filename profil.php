@@ -170,11 +170,11 @@
 								</div>
 							</div>
 					    </div>
-					    <div class="calendar" style="margin-right: 5%">
+					   <!--  <div class="calendar" style="margin-right: 5%">
 					        <div class="top corner-top">Mar</div>
 					        <div class="mid">Mardi</div>
 					        <div class="bottom corner-bottom">29</div>
-					    </div>
+					    </div> -->
 					    <div class="clear"></div>
 					    <div id="tab">
 					    	<ul id="myTab" class="nav nav-tabs">
@@ -190,13 +190,13 @@
 								      <table width="100%">
 										<tbody><tr>
 									    	<td valign="top" width="50%">
-									    <div class="widget-title">Earning Balance Stats</div>
+									    <div class="widget-title">Etat</div>
 									    <div class="widget-content">
 									    <table width="100%" cellpadding="4">
 									        <tbody><tr>
 									            <td width="130">
-									            Balance:</td>
-									            <td>$0.0000</td>
+									            Etudiant:</td>
+									            <td>0.0000</td>
 									        </tr>
 									    </tbody></table>    
 									    </div>   

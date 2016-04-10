@@ -12,9 +12,11 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
-    <link href="css/profil/global.css" rel="stylesheet" type="text/css">
-    <link href="css/profil/site.css" rel="stylesheet" type="text/css">
-    <link href="css/profil/jquery-ui-1.9.1.custom.css" rel="stylesheet" type="text/css">
+    <link href="css/global.css" rel="stylesheet" type="text/css">
+    <link href="css/site.css" rel="stylesheet" type="text/css">
+    <link href="css/jquery-ui-1.9.1.custom.css" rel="stylesheet" type="text/css">
+    <!-- Jquery file upload -->
+    <link rel="stylesheet" href="css/jquery.imagetag.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -35,8 +37,8 @@
         <ul>
                <li><a href="index.php">Accueil</a></li>
                             <?php if(isset($me)) {?>
-                    <li><a href="profil.php" class="current">Profil</a></li>
-                    <li><a href="demandes.php">Tâche</a></li>
+                    <li><a href="profil.php" class="current" id="profil">Profil</a></li>
+                    <li><a href="demandes.php" id="tache">Tâche</a></li>
                             <?php } ?>
                     <form class="form-horizontal" role="form" action="profil.php" method="post">        
                             <button class="btn btn-success " type="submit"  name="deconnexion" style="float: right; margin-right: 10px;margin-top: 2px;">Se déconnecter</button>    

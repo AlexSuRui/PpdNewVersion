@@ -32,8 +32,18 @@
 				ecrireErreur($erreur);
   
   ?>
+  <script type="text/javascript">
+  		function autoRun(){
+  			document.getElementById("tache").className="current";
+  			document.getElementById("profil").className="";
+  		}
+  		window.onload=autoRun();
+  		
+ 
+  	
+  </script>
   
-	  <div class="box" style="border:1px solid #d0d0d0;">
+	  <div class="box" style="border:1px solid #d0d0d0; min-height: 500px;">
 	                <div class="box-header">
 	                  	<div class="widget-main-title">Liste des demandes d'annotation</div>
 	                </div><!-- /.box-header -->

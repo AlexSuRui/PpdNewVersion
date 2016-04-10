@@ -86,7 +86,14 @@
 				  			<div class="row">
 					  			<div class="col-md-7 col-xs-10" >
 					  				<center>
-									 <img src=<?php echo '"'.$Image->Chemin.'"'; ?> id="imgAnnotation" />
+					  				<!-- <?php 
+					  					foreach ($Image as $image) {
+					  						echo '<img src=';
+					  						echo '"'.$Image->Chemin.'"'; 
+					  						echo 'id="imgAnnotation" />';
+					  					}
+					  				 ?> -->
+									<img src=<?php echo '"'.$Image->Chemin.'"'; ?> id="imgAnnotation" />
 										
 									</center>
 						  		</div>
@@ -118,6 +125,7 @@
 						  						</tr>
 						  					</tbody>
 						  				</table>
+						  				<?php  if ($Image->Verrouille == 1) {?>
 						  				<table width="100%" id="tbAnno">
 						  					<tbody>
 						  						<tr>
@@ -152,7 +160,7 @@
 																				echo '<tr class="success">';
 																			else
 																				echo '<tr>';
-																				
+									
 																			echo "<td>".get_utilisateur($annotation->UserUID)->Identifiant."</td>";
 
 																			$last = $annotation->UID;
@@ -161,7 +169,7 @@
 																		if ($fanno)
 																			$fanno = false;
 																		else
-																			echo " ";
+																			echo "";
 																			
 																		if ($annotation->UserUID == $me->UID and $annotation->Verrouille == 0 and $Image->Verrouille == 0)	
 																			echo '<a href="afficher.php?uid='.$_GET["uid"].'&ano='.$annotation->UID.'"<span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>';
@@ -173,11 +181,13 @@
 						  										?>	
 						  										</tbody>
 						  									</table>
+						  									
 						  								</div>
 						  							</td>
 						  						</tr>
 						  					</tbody>
 						  				</table>
+						  				<?php } ?>
 						  				<?php if ($Image->UserUID == $me->UID || $me->Administrateur) { ?>
 						  				<div class="box"style="border:1px solid #d0d0d0;" id="boxVerro">
 						  					<div class="box-header">
@@ -194,31 +204,39 @@
 	                  								</ul>
 	                  							</form>
 	                  							<?php } ?>
+	                  							<ul class="form-style-1 ">
 	                  							<form role="form" action=<?php echo '"afficher.php?uid='.$Image->UID.'"'; ?> method="post">
-	                  								<ul class="form-style-1">
+	                  								
 														<?php if ($Image->Verrouille == 0) { ?>
 														<li>
 															<button type="submit" class="btn btn-danger" name="verrouiller" value = "1">Verrouiller</button>
-															<button type="submit" class="btn btn-danger" name="analyser" id="btnAly">Analyser</button>
+															
 														</li>
 														<?php } else { ?>
 														<li>
 															<button type="submit" class="btn btn-success" name="verrouiller" value = "0">Déverrouiller</button>
-															<button type="submit" class="btn btn-danger" name="analyser" id="btnAly">Analyser</button>
+															
 														</li>
-													</ul>
+													
 												</form>
+												<form class="form-horizontal" role="form" action=<?php echo '"analyser.php?uid='.$Image->UID.'"'; ?> method="post">
+										            	<li>
+										                <button type="submit" class="btn btn-success" name="analyser">Analyser</button>
+										              	</li>
+										        </form>
+										        </ul>
 											</div>
 										</div>
+					
 												<?php } ?>
 						  				</div>
-						  				<?php } else if(!$me->Demandeur){ ?>
+						  				<?php } else if(!$me->Demandeur && $Image->Verrouille == 0){ ?>
 						  				<div class="box"style="border:1px solid #d0d0d0;" id="boxAnno">
 						  					<div class="box-header">
 	                  							<div class="widget-title">Annoter l'image</div>
 	                  						</div>
 	                  						<div class="box-body">
-	                  							<form role="form" action=<?php echo '"afficher.php?uid='.$Image->UID.'"'; ?> method="post">
+	                  							<form id="form11" role="form" action=<?php echo '"afficher.php?uid='.$Image->UID.'"'; ?> method="post">
 		                  							<ul class="form-style-1">
 		                  								<li>
 		                  									<label>Annotation <span class="required">*</span></label><input type="text" name="annotation" class="field-long" placeholder="Entrez une annotation" />&nbsp;</li>

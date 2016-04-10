@@ -1133,6 +1133,26 @@ function get_images_annotables($CategorieUID = 0, $Limit = 0, $Start = 0) {
     }
 }
 
+function get_images_annotables_all($DemandeUID) {
+    global $connexion, $DEBUG, $message, $erreur;
+    
+    $requete = "SELECT * FROM IMAGEANNOTABLE WHERE DemandeUID = ".$DemandeUID;
+
+    $images = array();
+    if ($resultats = mysqli_query($connexion, $requete)) {
+        if ($DEBUG)
+            $message .= mysqli_num_rows($resultats)." images annotables référencées.<br/>";
+        while ($tuple = mysqli_fetch_assoc($resultats)) {
+            $images[] = get_image_annotable($DemandeUID);
+        }
+        return $images;
+    } else {
+        if ($DEBUG)
+            $erreur .= "Impossible d'effectuer la requête :<br/>".$requete."<br/>";
+        return null;
+    }
+}
+
 function get_contribution($ContributionUID) {
     global $connexion, $DEBUG, $message, $erreur;
     $requete = "SELECT * FROM CONTRIBUTION WHERE ContributionUID = ".$ContributionUID;

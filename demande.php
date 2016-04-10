@@ -99,54 +99,10 @@
 							    <li>
 							        <label for="image">Sélectionnez une image à publier <span class="required">*</span></label>
 									<input type="file" name="image" id="image" multiple >
-									<script type="text/javascript">
-									    //图片上传
-									    $("#fileupload").fileupload({
-									        dataType: 'json',
-									        add: function (e, data) {
-									            var numItems = $('.files .images_zone').length;
-									            if(numItems>=10){
-									                alert('提交照片不能超过3张');
-									                return false;
-									            }
-									            $('.up_progress .progress-bar').css('width','0px');
-									            $('.up_progress').show();
-									            $('.up_progress .progress-bar').html('Uploading...');
-									            data.submit();
-									        },
-									        done: function (e, data) {
-									            $('.up_progress').hide();
-									            $('.upl').remove();
-									            var d = data.result;
-									            if(d.status==0){
-									                alert("上传失败");
-									            }else{
-									                var imgshow = '<div class="images_zone"><input type="hidden" name="imgs[]" value="'+d.msg+'" /><span><img src="'+d.msg+'"  /></span><a href="javascript:;">删除</a></div>';
-									                jQuery('.files').append(imgshow);
-									            }
-									        },
-									        progressall: function (e, data) {
-									            console.log(data);
-									            var progress = parseInt(data.loaded / data.total * 100, 10);
-									            $('.up_progress .progress-bar').css('width',progress + '%');
-									        }
-									    });
-									 
-									    //图片删除
-									    $('.files').on({
-									        mouseenter:function(){
-									            $(this).find('a').show();
-									        },
-									        mouseleave:function(){
-									            $(this).find('a').hide();
-									        },
-									    },'.images_zone');
-									    $('.files').on('click','.images_zone a',function(){
-									        $(this).parent().remove();
-									    });
-									</script>
 							    </li>
-
+								<li>
+									
+								</li>
 							    <li>
 							    	<label> Masquer les contributions </label>
 							    	<input type="radio" name="masquer" value="1" />Oui

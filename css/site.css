@@ -421,11 +421,12 @@ font-size:10px;
 }
 /*======================== DASHBOARD ===========================*/
 .admin-info{
-background:url(images/user-icon.png) no-repeat;
+background: no-repeat;
 min-height:104px;
-padding-left:114px;
+padding:10px;
 float:left;
 }
+
 .admin-info div{
 padding-bottom:3px;
 }
@@ -479,6 +480,23 @@ float:right;
 }
 .dashbaord-img-1, .dashbaord-img-2{
 width:445px;
+}
+/*==========================SETTING================================*/
+.setting-info, .mesRealisation{
+background: no-repeat;
+padding-left: 5 0px;
+/*float:left;*/
+}
+.setting-info{
+    min-height: 400px;
+}
+.setting-info,.mesRealisation div{
+    padding-bottom:3px;
+}
+.setting-info,.mesRealisation  .title{
+font-weight:bold;
+font-size:16px;
+padding-bottom:10px;
 }
 /*======================== REFERRAL LIST ===========================*/
 .widget-ref-option{
@@ -624,9 +642,9 @@ margin-left:10px;
 }
 #logo a{
 display:block;
-background:url(images/logo.png) no-repeat;
+background:url(../images/logoIDV.png) no-repeat;
 width:248px;
-height:60px;
+height:121px;
 }
 .top-box{float:right;margin-right:10px;padding-top:10px}
 .header_2{
@@ -730,6 +748,7 @@ margin-top:-37px;
 
 .main_content{
 background:#f6f6f6;
+min-height: 500px;
 padding:20px;
 margin:10px 0px;
 border:1px solid #d7d7d7;
@@ -945,4 +964,122 @@ opacity: .55; filter:Alpha(Opacity=55); background-image: none;
 }
 .pointer{
 cursor:pointer;
+}
+
+/*================form-style==================*/
+.form-style-1 {
+    margin:10px auto;
+    max-width: 600px;
+    padding: 10px 12px 10px 20px;
+    font-weight: 700;
+    font: 13px "Arial", "Lucida Grande", sans-serif;
+}
+.form-style-1 li {
+    padding: 0;
+    display: block;
+    list-style: none;
+    margin: 13px 0 0 0;
+}
+.form-style-1 label{
+    margin:0 0 3px 0;
+    padding:0px;
+    display:block;
+    font-weight: bold;
+}
+.form-style-1 input[type=text], 
+.form-style-1 input[type=date],
+.form-style-1 input[type=datetime],
+.form-style-1 input[type=number],
+.form-style-1 input[type=search],
+.form-style-1 input[type=time],
+.form-style-1 input[type=url],
+.form-style-1 input[type=email],
+textarea, 
+select;
+button{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border:1px solid #BEBEBE;
+    padding: 7px;
+    margin:0px;
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    outline: none;  
+}
+.form-style-1 input[type=text]:focus, 
+.form-style-1 input[type=date]:focus,
+.form-style-1 input[type=datetime]:focus,
+.form-style-1 input[type=number]:focus,
+.form-style-1 input[type=search]:focus,
+.form-style-1 input[type=time]:focus,
+.form-style-1 input[type=url]:focus,
+.form-style-1 input[type=email]:focus,
+.form-style-1 textarea:focus, 
+.form-style-1 select:focus;
+.form-style-1 button:focus;{
+    -moz-box-shadow: 0 0 8px #88D5E9;
+    -webkit-box-shadow: 0 0 8px #88D5E9;
+    box-shadow: 0 0 8px #88D5E9;
+    border: 1px solid #88D5E9;
+}
+.form-style-1 .field-divided{
+    width: 60%;
+}
+
+.form-style-1 .field-long{
+    width: 100%;
+}
+.form-style-1 .field-select{
+    width: 100%;
+}
+.form-style-1 .field-textarea{
+    height: 100px;
+}
+.form-style-1 select{
+    width: 49%;
+}
+.form-style-1 input[type=submit], .form-style-1 input[type=button]{
+    background: #4B99AD;
+    padding: 8px 15px 8px 15px;
+    width: 20%;
+    border: none;
+    color: #fff;
+    margin-top: 20px;
+    margin-left: 10%;
+}
+.form-style-1 input[type=submit]:hover, .form-style-1 input[type=button]:hover{
+    background: #4691A4;
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+}
+.form-style-1 .required{
+    color:red;
+}
+
+/*======================IMAGE ANNOTATION=====================*/
+#imgAnnotation{
+    margin-top: 2em;
+    width: 450px;
+    height: 380px;
+}
+#tbInfo, #tbAnno,#boxAnno,#boxVerro{
+    margin-top: 1em;
+}
+#btnAly{
+    margin-left: 2em;
+}
+#boxAff{
+    min-height: 600px;
+}
+#view{
+    width: 50px;
+    height: 50px;
+}
+#imgProfil{
+    width: 100px;
+    height: 100px;
 }

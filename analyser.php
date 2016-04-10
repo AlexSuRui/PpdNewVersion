@@ -27,100 +27,102 @@
 	?>
 
 <?php include('header.php'); ?>
+<body>
+	<div class="wrapper">
+		<!-- Content Wrapper. Contains page content -->
+      	<div class="content-wrapper" style="padding-top: 1.5em">
+      		<section class="content">
+				 <?php
+					if ($message != "")
+						ecrireMessage($message);
+					if ($erreur != "")
+						ecrireErreur($erreur);
+				  ?>
+				<div class="box" style="border:1px solid #d0d0d0;" id="boxAff">
+						<?php if (!isset($resultats)) { ?>
+				  		<div class="box-header">
+				  			<div class="widget-main-title">Lancer l'analyse</strong>  ?</div>
+				  		</div>
+				  		<div class="box-body">
+				  			<div class="row">
+				  				<div class="col-xs-12">
+										<form class="form-horizontal" role="form" action="http://localhost:9080/apriori/analyseur" method="get">
+								        <?php echoInput("support", "Support :", "Entrez un support entre 0 et 1", "text", null, "required");
+										echoInput("ontologie", "Ontologie :", "Entrez un support entre 0 et 1", "text", null, "required"); ?>
+								          <table class="table table-hover" >
+								            <thead>
+								              <tr>
+								                <th>Utilisateur</th>
+								                <th>Annotations</th>
+								              </tr>
+								            </thead>
+								          	<tbody>
+								              <?php
+										 $last = -1;
+										 $first = true;
+										 $fanno = true;
+										 $operation = "";
+										foreach ($annotations as $annotation) {
+											
+											if ($Image->MasquerLesContributions == 0 or ($annotation->UserUID == $me->UID))
+											{
+											if($last != $annotation->UserUID) {
+												if ($first)
+													$first = false;
+												else {
+													echo "</td></tr>";
+													$operation .= "|";
+												}
+												$fanno = true;
+												
+												echo '<tr>';
+												
+												$utilisateur = get_utilisateur($annotation->UserUID);
+												
+												echo "<td>".$utilisateur->Identifiant." (<strong>".$utilisateur->Reputation."</strong>)</td><td>";
+												
+												$operation.=$utilisateur->UID.";".$utilisateur->Reputation;
+												
+												$last = $annotation->UserUID;
+											}
+											
+											if ($fanno)
+												$fanno = false;
+											else
+												echo "; ";
+											
+											$traite = str_replace('"', " ", $annotation->Texte);
+											$traite = str_replace("'", " ", $traite);
+											
+											$operation.=";".$traite.";".$annotation->Confiance;	
+											echo $annotation->Texte;
+											}
+												
+										}
+										$operation = addslashes($operation);
+										echo "</td></tr> <input type='hidden' name='operation' id='operation' value='$operation'";
+									?>
+            										</tbody>
+          										</table>
+          									<button type="submit" class="btn btn-success" style="margin-left: 40%; margin-top: 20%" name="annoter">Soumettre à l'analyse APriori</button>
+        								</form>
+      							</div>
+   							 </div>
+   							 <?php } else { ?>
+						     <div class="box-header">
+					  			<div class="widget-main-title">Lancer l'analyse</strong>  ?</div>
+					  		</div>
+						     <div class="box-body"><strong><?php echo str_replace(";", " - ", $resultats); ?></strong></div>
+						     	<center><input type ="button" onclick="javascript:location.href='demandes.php'" style="margin-top: 10%" value="Retour" ></input>
+						     	</center>
+						    </div>
+						    <?php } ?>
 
-      <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
+      					</div>
         <!-- Content Header (Page header) -->
-
-        <!-- Main content -->
-        <section class="content">
-		 <div class="row">
-            <div class="col-xs-12">
-  <?php
-	if ($message != "")
-		ecrireMessage($message);
-	if ($erreur != "")
-		ecrireErreur($erreur);
-  ?>
-  <?php if (!isset($resultats)) { ?>
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title">Lancer l'analyse de « <strong><?php echo $Image->Nom; ?></strong> » ?</h3>
-      </div>
-      <div class="panel-body">
-        <form class="form-horizontal" role="form" action="http://localhost:8080/apriori/analyseur" method="get">
-        <?php echoInput("support", "Support :", "Entrez un support entre 0 et 1", "text", null, "required");
-		echoInput("ontologie", "Ontologie :", "Entrez un support entre 0 et 1", "text", null, "required"); ?>
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th>Utilisateur</th>
-                <th>Annotations</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-		 $last = -1;
-		 $first = true;
-		 $fanno = true;
-		 $operation = "";
-		foreach ($annotations as $annotation) {
-			
-			if ($Image->MasquerLesContributions == 0 or ($annotation->UserUID == $me->UID))
-			{
-			if($last != $annotation->UserUID) {
-				if ($first)
-					$first = false;
-				else {
-					echo "</td></tr>";
-					$operation .= "|";
-				}
-				$fanno = true;
-				
-				echo '<tr>';
-				
-				$utilisateur = get_utilisateur($annotation->UserUID);
-				
-				echo "<td>".$utilisateur." (<strong>".$utilisateur->Reputation."</strong>)</td><td>";
-				
-				$operation.=$utilisateur->UID.";".$utilisateur->Reputation;
-				
-				$last = $annotation->UserUID;
-			}
-			
-			if ($fanno)
-				$fanno = false;
-			else
-				echo "; ";
-			
-			$traite = str_replace('"', " ", $annotation->Texte);
-			$traite = str_replace("'", " ", $traite);
-			
-			$operation.=";".$traite.";".$annotation->Confiance;	
-			echo $annotation->Texte;
-			}
-				
-		}
-		$operation = addslashes($operation);
-		echo "</td></tr> <input type='hidden' name='operation' id='operation' value='$operation'";
-	?>
-            </tbody>
-          </table>
-          <button type="submit" class="btn btn-success" name="annoter">Soumettre à l'analyse APriori</button>
-        </form>
-      </div>
-    </div>
-    <?php } else { ?>
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title">Les concepts suivants ont été retenus</h3>
-      </div>
-      <div class="panel-body"><strong><?php echo str_replace(";", " - ", $resultats); ?></strong></div>
-    </div>
-    <?php } ?>
-</div><!-- /.col -->
-          </div><!-- /.row -->
-        </section><!-- /.content -->
-      </div><!-- /.content-wrapper -->
-      
+				</div>
+			</section>
+		</div>
+	</div>		
+</body>
 <?php include('footer.php'); ?>

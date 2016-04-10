@@ -13,14 +13,34 @@
     <!-- BlowUp -->
     <script src="js/blowup.js"></script>
     <!-- File upload -->
-    <script src="js/jQuery-File-Upload-9.12.1"></script>
+    <script src="js/jquery-image-tag.js"></script>
+<!--     <script src="js/jquery.ui.widget.js"></script>
     <script src="js/jquery.iframe-transport.js"></script>
-    <script src="js/jquery.ui.widget.js"></script>
-    <script>
+    <script src="js/jquery.fileupload.js"></script> -->
+     <script>
        $(document).ready(function () {
-        $("#imgAnnotation").blowup();
+        $("#imgAnnotation").blowup()
     })
     </script>
+    <script>
+      $(function(){
+        $('#imgAnnotation').imageTag();
+        
+        $('#imgAnnotation').imageTag({tagForm: $("#form11"), labelProperty:'title'});
+      })
+    </script>
+<!--     <script type="text/javascript">
+        $(function () {
+        $('#image').fileupload({
+            dataType: 'json',
+            done: function (e, data) {
+                $.each(data.result.files, function (index, file) {
+                    $('<p/>').text(file.name).appendTo(document.body);
+                });
+            }
+        });
+    });
+    </script> -->
 <!-- 	<script>
       $(function () {
         $("#example1").DataTable();
