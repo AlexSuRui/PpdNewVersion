@@ -100,12 +100,12 @@
 				ecrireErreur($erreur);
 		?>
 		<div class="register-box-body">
-        <p class="login-box-msg">S'inscrire comme <strong>
+        <p class="login-box-msg">Login as a  <strong>
 		<?php if (isset($_GET["type"]) && $_GET['type'] == 'demandeur') 
 				{ 
 					echo "requester";
 				}else{
-					echo "crouder";
+					echo "crowder";
 				} ?></strong></p>
         <form action="enregistrement.php" method="post">
           <div class="form-group has-feedback">
@@ -143,8 +143,8 @@
 		  <div class="form-group has-feedback">
 			<select name="statut" class="form-control"  id="statut *">
 				<option value="Expert" selected="selected">Expert</option>
-				<option value="Student">Etudiant</option>
-				<option value="Other">Autre</option>
+				<option value="Student">Student</option>
+				<option value="Other">Others</option>
 			</select>
 			<?php if (isset($_GET["type"]) && $_GET['type'] == 'demandeur') { ?>
               <input type="hidden" name="demandeur" value="1">
@@ -158,7 +158,7 @@
             <div class="col-xs-8">
               <div class="checkbox icheck">
                 <label>
-                  <input type="checkbox"> J'accepte les <a href="#" data-toggle="modal" data-target="#myModal">terms</a>
+                  <input type="checkbox"> I agree <a href="#" data-toggle="modal" data-target="#myModal">this terms</a>
                 </label>
 				<!-- Modal -->
 				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -166,7 +166,7 @@
 					<div class="modal-content">
 					  <div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="myModalLabel">Condition general</h4>
+						<h4 class="modal-title" id="myModalLabel">General condition</h4>
 					  </div>
 					  <div class="modal-body">
 						<ol>
@@ -186,7 +186,7 @@
           </div>
         </form>
 
-        <a href="connexions.php" class="text-center">Je suis déja inscrit</a>
+        <a href="connexions.php" class="text-center">I'm already a member</a>
       </div><!-- /.form-box -->
     </div><!-- /.register-box -->
 
