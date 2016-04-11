@@ -125,7 +125,7 @@
 						  						</tr>
 						  					</tbody>
 						  				</table>
-						  				<?php  if ($Image->Verrouille == 1) {?>
+<!-- 						  				<?php  if ($Image->Verrouille == 1) {?> -->
 						  				<table width="100%" id="tbAnno">
 						  					<tbody>
 						  						<tr>
@@ -187,7 +187,7 @@
 						  						</tr>
 						  					</tbody>
 						  				</table>
-						  				<?php } ?>
+<!-- 						  				<?php } ?> -->
 						  				<?php if ($Image->UserUID == $me->UID || $me->Administrateur) { ?>
 						  				<div class="box"style="border:1px solid #d0d0d0;" id="boxVerro">
 						  					<div class="box-header">
