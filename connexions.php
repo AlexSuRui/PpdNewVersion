@@ -5,6 +5,7 @@
 		header('Location: profil.php');
 
 	?>
+	
 <!DOCTYPE html>
 <html>
   <head>
