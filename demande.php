@@ -20,9 +20,9 @@
 			$categorie = $_POST["categorie"];
 			$date = date("Y-m-d H:i:s");
 			$verrouille = 0;
-			$masquer = $_POST["masquer"];
+			// $masquer = $_POST["masquer"];
 			
-			$Image = inserer_image_annotable($nom, $description, $date, $verrouille, $masquer, $me->UID, $categorie, 1, "");
+			$Image = inserer_image_annotable($nom, $description, $date, $verrouille, 0, $me->UID, $categorie, 1, "");
 			
 			$uploaddir = 'images';
 			
@@ -103,11 +103,11 @@
 								<li>
 									
 								</li>
-							    <li>
+<!-- 							    <li>
 							    	<label> Masquer les contributions </label>
 							    	<input type="radio" name="masquer" value="1" />Oui
 								    <input type="radio" name="masquer" value="0" checked />Non
-							    </li>
+							    </li> -->
 							    <li>
 
 							        <button type="submit" class="btn btn-success btn-lg" name="submit">Soumettre la demande</button>

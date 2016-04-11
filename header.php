@@ -27,7 +27,7 @@
  <div class="wrapper">
     <div class="header_1">
         <div id="logo">
-        <a href="/"></a>
+        <a href="index.php"></a>
         </div>
         <div class="top-box">
         <a href=""><img src="" border="0" style="display: none !important;"></a>        </div>
