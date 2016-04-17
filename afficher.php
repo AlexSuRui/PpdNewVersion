@@ -96,6 +96,7 @@
 									<img src=<?php echo '"'.$Image->Chemin.'"'; ?> id="imgAnnotation" />
 										
 									</center>
+
 						  		</div>
 						  		<div class="col-md-5 col-xs-10">
 						  				<table width="100%" id="tbInfo">
@@ -132,56 +133,109 @@
 						  							<td valign="top" width="50%">
 						  								<div class="widget-title">Annotation</div>
 						  								<div class="widget-content">
-						  									<table width="100%" cellpadding="4">
-						  										<thead>
-														          <tr>
-														            <th>Utilisateur</th>
-														            <th>Annotations</th>
-																	<th>fiabilité</th>
-														          </tr>
-														        </thead>
-						  										<tbody>
-						  											<?php
-																	 $last = -1;
-																	 $first = true;
-																	 $fanno = true;
-																	 foreach ($annotations as $annotation) {			
-																		if ($Image->MasquerLesContributions == 0 or ($annotation->UserUID == $me->UID))
-																		{
-																		if($last != $annotation->UID) {
-																			if ($first)
-																				$first = false;
-																			else
-																				echo "</td></tr>";
+						  									<form class="form-horizontal" role="form" action="http://localhost:9080/apriori/analyseur" method="get">
+							  									<table width="100%" cellpadding="4">
+							  										<thead>
+															          <tr>
+															            <th>Utilisateur</th>
+															            <th>Annotations</th>
+<!-- 																		<th>fiabilité</th> -->
+															          </tr>
+															        </thead>
+							  										<!-- <tbody>
+							  											<?php
+																		 $last = -1;
+																		 $first = true;
+																		 $fanno = true;
+																		 foreach ($annotations as $annotation) {			
+																			if ($Image->MasquerLesContributions == 0 or ($annotation->UserUID == $me->UID))
+																			{
+																			if($last != $annotation->UID) {
+																				if ($first)
+																					$first = false;
+																				else
+																					echo "</td></tr>";
+																					
+																				$fanno = true;
 																				
-																			$fanno = true;
-																			
-																			if ($annotation->UserUID == $me->UID)
-																				echo '<tr class="success">';
+																				if ($annotation->UserUID == $me->UID)
+																					echo '<tr class="success">';
+																				else
+																					echo '<tr>';
+										
+																				echo "<td>".get_utilisateur($annotation->UserUID)->Identifiant." (<strong>".get_utilisateur($annotation->UserUID)->Reputation."</strong>)</td>";
+																				$utilisateur = get_utilisateur($annotation->UserUID);
+																				$operation.=$utilisateur->UID.";".$utilisateur->Reputation;
+																				$last = $annotation->UID;
+
+																			}
+																			if ($fanno)
+																				$fanno = false;
 																			else
-																				echo '<tr>';
-									
-																			echo "<td>".get_utilisateur($annotation->UserUID)->Identifiant."</td>";
-
-																			$last = $annotation->UID;
-
+																				echo "";
+																				
+																			if ($annotation->UserUID == $me->UID and $annotation->Verrouille == 0 and $Image->Verrouille == 0)	
+																				echo '<a href="afficher.php?uid='.$_GET["uid"].'&ano='.$annotation->UID.'"<span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>';
+																			echo "<td>".$annotation->Texte."</td><td>".$annotation->Confiance."</td>";
+																			}
 																		}
-																		if ($fanno)
-																			$fanno = false;
-																		else
-																			echo "";
-																			
-																		if ($annotation->UserUID == $me->UID and $annotation->Verrouille == 0 and $Image->Verrouille == 0)	
-																			echo '<a href="afficher.php?uid='.$_GET["uid"].'&ano='.$annotation->UID.'"<span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>';
-																		echo "<td>".$annotation->Texte."</td><td>".$annotation->Confiance."</td>";
+
+																		echo '</tr>';	
+							  										?>
+
+							  										</tbody> -->
+							  										<tbody>
+														              <?php
+																 $last = -1;
+																 $first = true;
+																 $fanno = true;
+																 $operation = "";
+																foreach ($annotations as $annotation) {
+																	
+																	if ($Image->MasquerLesContributions == 0 or ($annotation->UserUID == $me->UID))
+																	{
+																	if($last != $annotation->UserUID) {
+																		if ($first)
+																			$first = false;
+																		else {
+																			echo "</td></tr>";
+																			$operation .= "|";
 																		}
+																		$fanno = true;
+																		
+																		echo '<tr>';
+																		
+																		$utilisateur = get_utilisateur($annotation->UserUID);
+																		
+																		echo "<td>".$utilisateur->Identifiant." (<strong>".$utilisateur->Reputation."</strong>)</td><td>";
+																		
+																		$operation.=$utilisateur->UID.";".$utilisateur->Reputation;
+																		
+																		$last = $annotation->UserUID;
 																	}
-
-																	echo '</tr>';	
-						  										?>	
-						  										</tbody>
-						  									</table>
-						  									
+																	
+																	if ($fanno)
+																		$fanno = false;
+																	else
+																		echo "; ";
+																	
+																	$traite = str_replace('"', " ", $annotation->Texte);
+																	$traite = str_replace("'", " ", $traite);
+																	
+																	$operation.=";".$traite.";".$annotation->Confiance;	
+																	echo $annotation->Texte;
+																	}
+																		
+																}
+																$operation = addslashes($operation);
+																echo "</td></tr> <input type='hidden' name='operation' id='operation' value='$operation'";
+															?>
+						            										</tbody>
+							  									</table>
+							  								<?php if ($Image->UserUID == $me->UID || $me->Administrateur) { ?>
+						  									<button type="submit" class="btn btn-success" style="margin-left: 20%; margin-top: 5%" name="annoter">Soumettre à l'analyse APriori</button>
+						  									<?php } ?>
+						  								</form>
 						  								</div>
 						  							</td>
 						  						</tr>
@@ -219,17 +273,11 @@
 														</li>
 													
 												</form>
-												<form class="form-horizontal" role="form" action=<?php echo '"analyser.php?uid='.$Image->UID.'"'; ?> method="post">
-										            	<li>
-										                <button type="submit" class="btn btn-success" name="analyser">Analyser</button>
-										              	</li>
-										        </form>
 										        </ul>
 											</div>
 										</div>
 					
 												<?php } ?>
-						  				</div>
 						  				<?php } else if(!$me->Demandeur && $Image->Verrouille == 0){ ?>
 						  				<div class="box"style="border:1px solid #d0d0d0;" id="boxAnno">
 						  					<div class="box-header">

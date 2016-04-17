@@ -47,8 +47,7 @@
 				  			<div class="row">
 				  				<div class="col-xs-12">
 										<form class="form-horizontal" role="form" action="http://localhost:9080/apriori/analyseur" method="get">
-								        <?php echoInput("support", "Support :", "Entrez un support entre 0 et 1", "text", null, "required");
-										echoInput("ontologie", "Ontologie :", "Entrez un support entre 0 et 1", "text", null, "required"); ?>
+							
 								          <table class="table table-hover" >
 								            <thead>
 								              <tr>
