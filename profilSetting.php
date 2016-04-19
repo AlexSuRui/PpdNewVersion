@@ -57,16 +57,13 @@
 	}
 	
 	if (isset($_POST["submit"])) {				
-		$identifiant = $_POST["identifiant"];
 		if ($utilisateur == null) {
+			$identifiant = $me2->Identifiant;
+			$email = $_POST["email"];
 			$emdp = $_POST["exMotDePasse"];
 			$mdp = $_POST["motDePasse"];
 			$cmdp = $_POST["confirmerMotDePasse"];
 		}
-		$nom = $_POST["nom"];
-		$prenom = $_POST["prenom"];
-		$email = $_POST["email"];
-		$statut = $_POST["statut"];
 		
 		if (isset($_POST["demandeur"])) 
 			$demandeur = 1;
@@ -74,10 +71,10 @@
 			$demandeur = 0;
 		
 		
-		if ((get_utilisateur_selon_identifiant($identifiant) != null) && ($identifiant != $me2->Identifiant))
-		{
-			$erreur.= "Cet identifiant est déjà pris.<br/>";
-		}
+		// if ((get_utilisateur_selon_identifiant($identifiant) != null) && ($identifiant != $me2->Identifiant))
+		// {
+		// 	$erreur.= "Cet identifiant est déjà pris.<br/>";
+		// }
 		
 		if (get_utilisateur_selon_email($email) != null && $email != $me2->Email)
 		{
@@ -102,12 +99,13 @@
 					$me2->MotDePasse = $mdp;
 				}
 			}
-			$me2->Nom = $nom;
-			$me2->Prenom = $prenom;
+			// $me2->Nom = $nom;
+			// $me2->Prenom = $prenom;
 			$me2->Email = $email;
-			$me2->Statut = $statut;
+			// $me2->Statut = $statut;
 			$me2 = maj_utilisateur($me2);
 			if ($me2 == null) {
+
 				$erreur .= "Erreur lors de la mise à jour du profil.";
 			} else {
 				$message = "Mise à jour du profil faite !";
@@ -160,7 +158,7 @@
 								</div>
 								<div class="col-md-8">
 									<div class="title"><?php echo $me2->Nom." ".$me2->Prenom; ?></div>
-								        <div>Member Since: Feb 18, 2016</div>
+<!-- 								        <div>Member Since: Feb 18, 2016</div> -->
 								        <div>Membership: <strong> <?php if ($me2->Demandeur == 1) { ?>
 												   Demandeur
 												  <?php } else { ?>
@@ -207,8 +205,8 @@
 									</tbody></table>
 								   </div>
 								   <div class="tab-pane fade in active" id="2">
-								   		<div class="setting-info">
-											<form role="form" action="demande.php" method="post"  enctype="multipart/form-data">
+								   		<div>
+											<!-- <form role="form" action="profil.php" method="post"  enctype="multipart/form-data">
 												<ul class="form-style-1" style="margin-left: 20%;">								
 													<li>
 														<label>Identifiant <span class="required">*</span></label>
@@ -242,6 +240,64 @@
 														<button type="submit" name="submit" class="btn btn-danger">Envoyer</button>
 													</li>
 												</ul>
+											</form> -->
+											<form role="form" action="profilSetting.php" method="post"  enctype="multipart/form-data">
+												<input type="hidden" name="a" value="submit">
+												<table cellpadding="4" width="100%" align="center" class="widget-tbl">
+													<tbody>
+													<tr>
+											    		<td class="widget-title"><strong><?php echo $me2->Identifiant; ?></strong></td>
+											    	</tr>
+											    	<tr>
+											    		<td>
+											                <table cellpadding="4" width="100%">
+											                	<tbody>
+											                	<!-- <tr>
+											                		<td align="right" width="50%">Login</td>
+											                		<td width="50%"><?php echo $me2->Identifiant; ?></td>
+											                	</tr> -->
+											                	<tr>
+											                    	<td align="right" width="50%">E-mail Address:</td>
+											                    	<td><input type="text" name="email" id="email" value="<?php echo $me2->Email; ?>"></td>
+											                	</tr>											         
+											                	</tbody>
+											                </table>
+											   			</td>
+											    	</tr>
+											    	<tr>
+											    		<td class="widget-title">Update Password</td>
+											    	</tr>
+											    	<tr>
+											    		<td>
+											                <table cellpadding="4" width="100%">
+											                <tbody>
+											                	<tr>
+											                    <td align="right" width="50%">New password:</td>
+											                    <td><input type="password" name="motDePasse" id="motDePasse"></td>
+											                	</tr>
+											                	<tr>
+											                    <td align="right">New password confirmation:</td>
+											                    <td><input type="password" name="confirmerMotDePasse" id="confirmerMotDePasse"></td>
+											                	</tr>
+											                	</tbody>
+											                </table>
+											    		</td>
+											    	</tr>
+	
+													<tr>
+											    		<td class="widget-title">Send</td>
+											    	</tr>
+											    	<tr>
+											    		<td>
+											        		<div class="info_box">You have to enter your current password to save the new changes</div>
+											        		<div class="padding5 " align="center"><input type="password" name="exMotDePasse" id="exMotDePasse"></div>
+											        		<div align="center" class="padding5 " style="margin-top:1px">
+											        			<input type="submit" name="submit" value="Send" class="orange">
+											        		</div>
+											        	</td>
+											    	</tr>
+													</tbody>
+												</table>  
 											</form>
 										</div>   
 								   </div>

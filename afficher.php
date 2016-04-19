@@ -38,6 +38,18 @@
 			header('Location: afficher.php?uid='.$_GET["uid"]);
 		}
 		
+		if (isset($_POST["bloquer"])){
+			$bDemande = $Image->UID;
+			$bUserUID = $_POST["bloquer"];
+			bloquer_Personne($bDemande, $bUserUID);
+			header('Location: afficher.php?uid='.$_GET["uid"]);
+
+		}
+
+		if (isset($_POST["analyser"])){
+			
+		}
+
 		if (isset($_POST["annoter"])) {
 			
 			if(isset($_POST["annotation"]) && !empty($_POST["annotation"]))
@@ -113,7 +125,7 @@
 						  											</tr>
 						  											<tr>
 						  												<td width="130">Client: </td>
-						  												<td><?php echo get_utilisateur($Image->UserUID); ?></td>
+						  												<td><?php echo get_utilisateur($Image->UserUID)->Identifiant; ?></td>
 						  											</tr>
 						  											<tr>
 						  												<td width="130">Description </td>
@@ -126,7 +138,6 @@
 						  						</tr>
 						  					</tbody>
 						  				</table>
-<!-- 						  				<?php  if ($Image->Verrouille == 1) {?> -->
 						  				<table width="100%" id="tbAnno">
 						  					<tbody>
 						  						<tr>
@@ -139,7 +150,7 @@
 															          <tr>
 															            <th>Utilisateur</th>
 															            <th>Annotations</th>
-<!-- 																		<th>fiabilité</th> -->
+																		<!-- <th>Bloquer</th> -->
 															          </tr>
 															        </thead>
 							  										<!-- <tbody>
@@ -185,7 +196,7 @@
 
 							  										</tbody> -->
 							  										<tbody>
-														              <?php
+														        <?php
 																 $last = -1;
 																 $first = true;
 																 $fanno = true;
@@ -194,46 +205,49 @@
 																	
 																	if ($Image->MasquerLesContributions == 0 or ($annotation->UserUID == $me->UID))
 																	{
-																	if($last != $annotation->UserUID) {
-																		if ($first)
-																			$first = false;
-																		else {
-																			echo "</td></tr>";
-																			$operation .= "|";
+																		if($last != $annotation->UserUID) 
+																		{
+																			if ($first)
+																				$first = false;
+																			else {
+																				echo "</td></tr>";
+																				$operation .= "|";
+																				}
+																			$fanno = true;
+																			
+																			echo '<tr>';
+																			
+																			$utilisateur = get_utilisateur($annotation->UserUID);
+																			
+																			echo "<td>".$utilisateur->Identifiant." (<strong>".$utilisateur->Reputation."</strong>)</td><td>";
+																			
+																			$operation.=$utilisateur->UID.";".$utilisateur->Reputation;
+																			
+																			$last = $annotation->UserUID;
 																		}
-																		$fanno = true;
 																		
-																		echo '<tr>';
+																		if ($fanno)
+																			$fanno = false;
+																		else
+																			echo "; ";
 																		
-																		$utilisateur = get_utilisateur($annotation->UserUID);
+																		$traite = str_replace('"', " ", $annotation->Texte);
+																		$traite = str_replace("'", " ", $traite);
 																		
-																		echo "<td>".$utilisateur->Identifiant." (<strong>".$utilisateur->Reputation."</strong>)</td><td>";
+																		$operation.=";".$traite.";".$annotation->Confiance;	
+																		echo $annotation->Texte;
 																		
-																		$operation.=$utilisateur->UID.";".$utilisateur->Reputation;
-																		
-																		$last = $annotation->UserUID;
-																	}
-																	
-																	if ($fanno)
-																		$fanno = false;
-																	else
-																		echo "; ";
-																	
-																	$traite = str_replace('"', " ", $annotation->Texte);
-																	$traite = str_replace("'", " ", $traite);
-																	
-																	$operation.=";".$traite.";".$annotation->Confiance;	
-																	echo $annotation->Texte;
+
 																	}
 																		
 																}
 																$operation = addslashes($operation);
-																echo "</td></tr> <input type='hidden' name='operation' id='operation' value='$operation'";
+																echo "</td></tr> <input type='hidden' name='operation' id='operation' value='$operation'></input>";
 															?>
 						            										</tbody>
 							  									</table>
-							  								<?php if ($Image->UserUID == $me->UID || $me->Administrateur) { ?>
-						  									<button type="submit" class="btn btn-success" style="margin-left: 20%; margin-top: 5%" name="annoter">Soumettre à l'analyse APriori</button>
+							  								<?php if ($Image->Verrouille == 1&&($Image->UserUID == $me->UID || $me->Administrateur)) { ?>
+						  									<button type="submit" class="btn btn-success" style="float: right; margin-top: 5%" name="analyser">Analyser</button>
 						  									<?php } ?>
 						  								</form>
 						  								</div>
@@ -241,34 +255,31 @@
 						  						</tr>
 						  					</tbody>
 						  				</table>
-<!-- 						  				<?php } ?> -->
 						  				<?php if ($Image->UserUID == $me->UID || $me->Administrateur) { ?>
 						  				<div class="box"style="border:1px solid #d0d0d0;" id="boxVerro">
 						  					<div class="box-header">
 	                  							<div class="widget-title">Opération sur l'image</div>
 	                  						</div>
 	                  						<div class="box-body">
-	                  							<?php if ($me->Administrateur) { ?>
+	                  							<ul class="form-style-1">
 	                  							<form role="form" action=<?php echo '"afficher.php?uid='.$Image->UID.'"'; ?> method="post">
-	                  								<ul class="form-style-1">
-	                  									<li>
-	                  										<label>Vous voulez supprimer cet image?</label>
+	                  									<li style="display: inline;">
 	                  										<button type="submit" class="btn btn-danger" name="supprimer" value = "1">Supprimer</button>
 	                  									</li>
-	                  								</ul>
-	                  							</form>
-	                  							<?php } ?>
-	                  							<ul class="form-style-1 ">
-	                  							<form role="form" action=<?php echo '"afficher.php?uid='.$Image->UID.'"'; ?> method="post">
-	                  								
 														<?php if ($Image->Verrouille == 0) { ?>
-														<li>
-															<button type="submit" class="btn btn-danger" name="verrouiller" value = "1">Verrouiller</button>
-															
+														<li style="display: inline;">
+															<button type="submit"  style="margin-left: 0%" class="btn btn-success " name="verrouiller" value = "1">Verrouiller</button>															
 														</li>
+														<li style="display: inline;">
+															<button type="submit" style="margin-left: 0%" class="btn btn-success disabled " name="verrouiller" value = "0">Déverrouiller</button>
+														</li>
+
 														<?php } else { ?>
-														<li>
-															<button type="submit" class="btn btn-success" name="verrouiller" value = "0">Déverrouiller</button>
+														<li style="display: inline;">
+															<button type="submit" style="margin-left: 0%" class="btn btn-success disabled" name="verrouiller" value = "1">Verrouiller</button>															
+														</li>
+														<li style="display: inline;">
+															<button type="submit" style="margin-left: 0%" class="btn btn-success " name="verrouiller" value = "0">Déverrouiller</button>
 															
 														</li>
 													

@@ -576,6 +576,27 @@ function maj_contribution($Contribution) {
     }
 }
 
+function bloquer_contribution($Contribution) {
+     global $connexion, $DEBUG, $message, $erreur;
+     $requete = "UPDATE CONTRIBUTION SET Verrouille = 1 WHERE ContributionUID = ".$Contribution->UID;
+      if (mysqli_query($connexion, $requete) === TRUE) {
+        if ($DEBUG) {
+            $message .= "<b>Request : </b> ".$requete."<br/>";
+            $message .= "Conribution N°<b>".$Contribution->UID."</b># mise à jour.<br />";
+        }
+        return $Contribution;
+    }
+    else 
+    {
+        if ($DEBUG) {
+            $erreur .= "<b>Request : </b> ".$requete."<br/>";
+            $erreur .= "Erreur lors de la mise de la contribution N°<b>".$Contribution->UID."</b># (". mysqli_errno($connexion) .") :<br /><b>"
+              . mysqli_error($connexion)."</b><br/>";
+        }
+        return null;
+    }
+}
+
 function supprimer_contribution ($Contribution) {
     global $connexion, $DEBUG, $message, $erreur;
     $requete = "DELETE FROM CONTRIBUTION WHERE ContributionUID = ".$Contribution->UID;
@@ -1287,4 +1308,18 @@ function get_result($userID) {
         return null;
     }
 }
+
+function bloquer_Personne($demandeUID,$userID){
+    global $connexion, $DEBUG, $message, $erreur;
+     $requete = "SELECT CONTRIBUTION.ContributionUID FROM CONTRIBUTION,ANNOTATION WHERE CONTRIBUTION.ContributionUID = ANNOTATION.ContributionUID AND CONTRIBUTION.UserUID = $userID AND CONTRIBUTION.DemandeUID = $demandeUID";
+     if ($resultats = mysqli_query($connexion, $requete)) {
+        if ($DEBUG)
+            $message .= mysqli_num_rows($resultats)." result référencées.<br/>";
+        while ($tuple = mysqli_fetch_assoc($resultats)) {
+            bloquer_contribution($tuple["ContributionUID"]);
+        }
+        return $demandeUID;
+    }
+}
+
 ?>
