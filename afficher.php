@@ -92,7 +92,7 @@
 				  	?>
 				  	<div class="box" style="border:1px solid #d0d0d0;" id="boxAff">
 				  		<div class="box-header">
-				  			<div class="widget-main-title">Annoter l'image</div>
+				  			<div class="widget-main-title">Annotation</div>
 				  		</div>
 				  		<div class="box-body">
 				  			<div class="row">
@@ -148,7 +148,7 @@
 							  									<table width="100%" cellpadding="4">
 							  										<thead>
 															          <tr>
-															            <th>Utilisateur</th>
+															            <th>User</th>
 															            <th>Annotations</th>
 																		<!-- <th>Bloquer</th> -->
 															          </tr>
@@ -247,7 +247,7 @@
 						            										</tbody>
 							  									</table>
 							  								<?php if ($Image->Verrouille == 1&&($Image->UserUID == $me->UID || $me->Administrateur)) { ?>
-						  									<button type="submit" class="btn btn-success" style="float: right; margin-top: 5%" name="analyser">Analyser</button>
+						  									<button type="submit" class="btn btn-success" style="float: right; margin-top: 5%" name="analyser">Analyze</button>
 						  									<?php } ?>
 						  								</form>
 						  								</div>
@@ -258,28 +258,28 @@
 						  				<?php if ($Image->UserUID == $me->UID || $me->Administrateur) { ?>
 						  				<div class="box"style="border:1px solid #d0d0d0;" id="boxVerro">
 						  					<div class="box-header">
-	                  							<div class="widget-title">Opération sur l'image</div>
+	                  							<div class="widget-title">Operation on image</div>
 	                  						</div>
 	                  						<div class="box-body">
 	                  							<ul class="form-style-1">
 	                  							<form role="form" action=<?php echo '"afficher.php?uid='.$Image->UID.'"'; ?> method="post">
 	                  									<li style="display: inline;">
-	                  										<button type="submit" class="btn btn-danger" name="supprimer" value = "1">Supprimer</button>
+	                  										<button type="submit" class="btn btn-danger" name="supprimer" value = "1">Delete</button>
 	                  									</li>
 														<?php if ($Image->Verrouille == 0) { ?>
 														<li style="display: inline;">
-															<button type="submit"  style="margin-left: 0%" class="btn btn-success " name="verrouiller" value = "1">Verrouiller</button>															
+															<button type="submit"  style="margin-left: 0%" class="btn btn-success " name="verrouiller" value = "1">Lock</button>															
 														</li>
 														<li style="display: inline;">
-															<button type="submit" style="margin-left: 0%" class="btn btn-success disabled " name="verrouiller" value = "0">Déverrouiller</button>
+															<button type="submit" style="margin-left: 0%" class="btn btn-success disabled " name="verrouiller" value = "0">Unlock</button>
 														</li>
 
 														<?php } else { ?>
 														<li style="display: inline;">
-															<button type="submit" style="margin-left: 0%" class="btn btn-success disabled" name="verrouiller" value = "1">Verrouiller</button>															
+															<button type="submit" style="margin-left: 0%" class="btn btn-success disabled" name="verrouiller" value = "1">Lock</button>															
 														</li>
 														<li style="display: inline;">
-															<button type="submit" style="margin-left: 0%" class="btn btn-success " name="verrouiller" value = "0">Déverrouiller</button>
+															<button type="submit" style="margin-left: 0%" class="btn btn-success " name="verrouiller" value = "0">Unlock</button>
 															
 														</li>
 													
@@ -292,7 +292,7 @@
 						  				<?php } else if(!$me->Demandeur && $Image->Verrouille == 0){ ?>
 						  				<div class="box"style="border:1px solid #d0d0d0;" id="boxAnno">
 						  					<div class="box-header">
-	                  							<div class="widget-title">Annoter l'image</div>
+	                  							<div class="widget-title">Annotate image</div>
 	                  						</div>
 	                  						<div class="box-body">
 	                  							<form id="form11" role="form" action=<?php echo '"afficher.php?uid='.$Image->UID.'"'; ?> method="post">
@@ -303,14 +303,14 @@
 		                  								<li>
 		                  									<label>Confiance <span class="required">*</span></label>
 		                  									<input type="radio" name="confiance" value="100" checked />
-												            <font color="#5cb85c">Confiant</font>
+												            <font color="#5cb85c">Confident</font>
 												            <input type="radio" name="confiance" value="80" />
-												            <font color="#f0ad4e">Presque confiant</font>
+												            <font color="#f0ad4e">Average confident</font>
 												            <input type="radio" name="confiance" value="40" />
-												            <font color="#d9534f">Hésitant</font> 
+												            <font color="#d9534f">Hesitant</font> 
 		                  								</li>
 		                  								<li>
-		                  									<button type="submit" class="btn btn-success" name="annoter" >Soumettre l'annotation</button>
+		                  									<button type="submit" class="btn btn-success" name="annoter" >Submit the annotation</button>
 		                  								</li>
 		                  							</ul>
 	                  							</form>

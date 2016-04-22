@@ -45,18 +45,18 @@
   
 	  <div class="box" style="border:1px solid #d0d0d0; min-height: 500px;">
 	                <div class="box-header">
-	                  	<div class="widget-main-title">Liste des demandes d'annotation</div>
+	                  	<div class="widget-main-title">List of tasks</div>
 	                </div><!-- /.box-header -->
 					<div class="row" style="margin:1em"><?php if ($me->Demandeur) { ?>
 						<div class="col-sm-3">
 							
-							<a style="margin-left: 10px;" href="demande.php" class="btn btn-success">Nouvelle image annotable</a>
+							<a style="margin-left: 10px;" href="demande.php" class="btn btn-success">New task</a>
 							
 						</div><?php } ?>
 						<div class="col-sm-4" style="float: right">
 							<form class="form-horizontal" role="form" action="demandes.php" method="post">
 							<select class="form-control" name="categorie" onchange="this.form.submit()">
-							  <option value=0>Toutes les catégories</option>
+							  <option value=0>All category</option>
 							  <?php
 								foreach ($categories as $categorie) {
 									if ($selected == $categorie->UID)
@@ -74,10 +74,10 @@
 	                    <thead>
 	                      <tr>
 	                        <th>#</th>
-							<th>Nom</th>
+							<th>Name</th>
 							<th>Description</th>
 							<th>Type</th>
-							<th>Demandeur</th>
+							<th>Owner</th>
 	                      </tr>
 	                    </thead>
 	                    <tbody>

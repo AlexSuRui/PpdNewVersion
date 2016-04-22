@@ -35,13 +35,13 @@
     </div>
     <div class="header_2 corner-all">
         <ul>
-               <li><a href="index.php">Accueil</a></li>
+               <li><a href="index.php">Home</a></li>
                             <?php if(isset($me)) {?>
                     <li><a href="profil.php" class="current" id="profil">Profil</a></li>
-                    <li><a href="demandes.php" id="tache">Tâche</a></li>
+                    <li><a href="demandes.php" id="tache">Tasks</a></li>
                             <?php } ?>
                     <form class="form-horizontal" role="form" action="profil.php" method="post">        
-                            <button class="btn btn-success " type="submit"  name="deconnexion" style="float: right; margin-right: 10px;margin-top: 2px;">Se déconnecter</button>    
+                            <button class="btn btn-success " type="submit"  name="deconnexion" style="float: right; margin-right: 10px;margin-top: 2px;">Log out</button>    
                     </form>
                         </ul>
         <div class="clear"></div>

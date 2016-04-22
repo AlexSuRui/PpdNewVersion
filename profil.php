@@ -136,14 +136,14 @@
 						<li>
 							<div class="membermenu">
 								<div class="mid">
-									Historique
+									History
 								</div>
 							</div>
 							<ul>
 								<?php if ($me2->Demandeur == 1) { ?>
-								<li><a href="myDemandes.php">Mes demandes</a></li>
+								<li><a href="myDemandes.php">My requests</a></li>
 								<?php }else{ ?>
-								<li><a href="myRealisation.php">Mes réalisation</a></li>
+								<li><a href="myRealisation.php">My achievements</a></li>
 								<?php } ?>
 							</ul>
 						</li>
@@ -151,7 +151,7 @@
 				</div>
 				<div style="display:table-cell; padding-left:20px">
 					<!-- Content -->
-					<div class="widget-main-title">Tableau de bord</div>
+					<div class="widget-main-title">Dashboard</div>
 					<div class="widget-content">
 						<div class="admin-info">
 							<div class="row">
@@ -183,14 +183,14 @@
 								         Information
 								      </a>
 								   </li>
-								   <li><a href="profilSetting.php" data-toggle="tab">Paramètre Personnel</a></li>
+								   <li><a href="profilSetting.php" data-toggle="tab">Personal parameter</a></li>
 								</ul>
 								<div id="myTabContent" class="tab-content">
 								   <div class="tab-pane fade in active" id="home">
 								      <table width="100%">
 										<tbody><tr>
 									    	<td valign="top" width="50%">
-									    <div class="widget-title">Etat</div>
+									    <div class="widget-title">Stat</div>
 									    <div class="widget-content">
 									    <table width="100%" cellpadding="4">
 									        <tbody><tr>

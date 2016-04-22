@@ -16,13 +16,15 @@
 		$erreur = "";
 		
 		connection(true);
-		
+		if ($identifiant!=="")
 		$utilisateur = get_utilisateur_selon_identifiant($identifiant);
 		
 		if ($utilisateur == null) {
 			$erreur .= "Aucun utilisateur avec cet identifiant.<br/>";
+			ecrireMessage($message);
 		} else {
 			$utilisateur = authentification($identifiant, $mdp);
+			
 			if ($utilisateur == null) {
 				$erreur .= "La combinaison identifiant/mot de passe fournie est incorrecte.<br/>";
 			} else {
@@ -73,7 +75,7 @@
         <a href="index.php"><img src="images/logoIDV.png" /></a>
       </div><!-- /.login-logo -->
       <div class="login-box-body">
-        <p class="login-box-msg">Connectez vous</p>
+        <p class="login-box-msg">Log in</p>
         <form action="connexion.php" method="post">
           <div class="form-group has-feedback">
             <input name="identifiant" type="text" class="form-control" placeholder="Login">
@@ -84,24 +86,25 @@
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           <div class="row">
-            <div class="col-xs-7">
+            <div class="col-xs-8">
               <div class="checkbox icheck">
               <label>
           <?php 
             if (isset($_GET["type"]) && $_GET['type'] == 'demandeur') 
             {
           ?>
-            <a href="enregistrement.php?type=demandeur" class="text-center">S'inscrire</a>
+            <a href="enregistrement.php?type=demandeur" class="text-center">Sign up</a>
           <?php 
             }else{
           ?>
-            <a href="enregistrement.php" class="text-center">S'inscrire</a>
+            <a href="enregistrement.php" class="text-center">Sign up</a>
           <?php } ?>
+          	| <a href="#">I forgot my password</a><br>
                 </label>
               </div>
             </div><!-- /.col -->
-            <div class="col-xs-4">
-              <button type="submit" name="submit" class="btn btn-primary btn-long" >Se connecter</button>
+            <div class="col-xs-3">
+              <button type="submit" name="submit" class="btn btn-primary btn-long" >Log in</button>
             </div><!-- /.col -->
           </div>
         </form>
@@ -112,7 +115,7 @@
           <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using Google+</a>
         </div> /.social-auth-links 
 
-        <a href="#">I forgot my password</a><br>-->
+        
 
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->

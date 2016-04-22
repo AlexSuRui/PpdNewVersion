@@ -109,7 +109,7 @@
 				} ?></strong></p>
         <form action="enregistrement.php" method="post">
           <div class="form-group has-feedback">
-            <input name="identifiant" type="text" class="form-control" placeholder="Identifiant *">
+            <input name="identifiant" type="text" class="form-control" placeholder="Login *">
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
@@ -117,19 +117,19 @@
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <input name="motDePasse" type="password" class="form-control" placeholder="Mot de passe *">
+            <input name="motDePasse" type="password" class="form-control" placeholder="Password (At least 7 length)*">
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <input name="confirmerMotDePasse" type="password" class="form-control" placeholder="Confirmer mot de passe *">
+            <input name="confirmerMotDePasse" type="password" class="form-control" placeholder="Confirm the password *">
             <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
           </div>
           <div class="row top-margin">
 			  <div class="form-group has-feedback col-sm-6">
-	            <input name="prenom" type="text" class="form-control" placeholder="Prenom">
+	            <input name="prenom" type="text" class="form-control" placeholder="First name">
 	          </div>
 			  <div class="form-group has-feedback col-sm-6">
-	            <input name="nom" type="text" class="form-control" placeholder="Nom">
+	            <input name="nom" type="text" class="form-control" placeholder="Name">
 	          </div>
 	      </div>
 	       <div class="row top-margin">

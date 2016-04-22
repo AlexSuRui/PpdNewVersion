@@ -36,7 +36,7 @@
   ?>
 	  <div class="box" style="border:1px solid #d0d0d0;">
 	                <div class="box-header">
-	                  	<div class="widget-main-title">Mes réalisations</div>
+	                  	<div class="widget-main-title">My achievements</div>
 	                </div><!-- /.box-header -->
 	                <div class="box-body">
 	                  <table id="example1" class="table table-bordered table-striped ">
@@ -44,10 +44,10 @@
 	                      <tr>
 	                        <th>#</th>
 	                        <th colspan="5">View</th>
-							<th>Titre du projet</th>
+							<th>Title</th>
 							<th>Client</th>
 							<th>Date</th>
-							<th colspan="1">Etat de tâche</th>
+							<th colspan="1">State</th>
 	                      </tr>
 	                    </thead>
 	                    <tbody>

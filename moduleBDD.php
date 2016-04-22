@@ -100,7 +100,7 @@ function inserer_utilisateur($Nom, $Prenom, $Identifiant, $MotDePasse, $Institut
             $message .= "Profil <b>$Prenom $Nom ($Identifiant)</b> créé.<br />";
 		}
         $UID = mysqli_insert_id($connexion);
-        return new Utilisateur($UID, $Nom, $Prenom, $Identifiant, $MotDePasse, $Institute, $Email, $Statut, $Demandeur, $Bloque, $Reputation, $Administrateur);
+        return new Utilisateur($UID, $Nom, $Prenom, $Identifiant, $MotDePasse, $Email, $Statut, $Demandeur, $Bloque, $Reputation, $Administrateur, $Institute);
     }
     else 
     {
@@ -907,7 +907,7 @@ function get_utilisateur($UserUID) {
             $tuple = mysqli_fetch_assoc($resultats);
             if ($DEBUG)
                 $message .= "Utilisateur retrouvé : <b>".$tuple["Identifiant"]."</b><br/>";
-            return new Utilisateur($tuple["UserUID"], $tuple["Nom"], $tuple["Prenom"], $tuple["Identifiant"], $tuple["MotDePasse"], $tuple["Email"], $tuple["Statut"], $tuple["Demandeur"], $tuple["Bloque"], $tuple["Reputation"], $tuple["Administrateur"]);
+            return new Utilisateur($tuple["UserUID"], $tuple["Nom"], $tuple["Prenom"], $tuple["Identifiant"], $tuple["MotDePasse"], $tuple["Email"], $tuple["Statut"], $tuple["Demandeur"], $tuple["Bloque"], $tuple["Reputation"], $tuple["Administrateur"], $tuple["Institute"]);
         } else {
             if ($DEBUG)
                 $erreur .= "Pas d'utilisateur ayant cet identifiant unique.<br/>";
@@ -928,7 +928,7 @@ function get_utilisateur_selon_identifiant($Identifiant) {
             $tuple = mysqli_fetch_assoc($resultats);
             if ($DEBUG)
                 $message .= "Utilisateur retrouvé : <b>".$tuple["Identifiant"]."</b><br/>";
-            return new Utilisateur($tuple["UserUID"], $tuple["Nom"], $tuple["Prenom"], $tuple["Identifiant"], $tuple["MotDePasse"], $tuple["Email"], $tuple["Statut"], $tuple["Demandeur"], $tuple["Bloque"], $tuple["Reputation"], $tuple["Administrateur"]);
+            return new Utilisateur($tuple["UserUID"], $tuple["Nom"], $tuple["Prenom"], $tuple["Identifiant"], $tuple["MotDePasse"], $tuple["Email"], $tuple["Statut"], $tuple["Demandeur"], $tuple["Bloque"], $tuple["Reputation"], $tuple["Administrateur"],$tuple["Institute"]);
         } else {
             if ($DEBUG)
                 $erreur .= "Pas d'utilisateur ayant cet identifiant.<br/>";
