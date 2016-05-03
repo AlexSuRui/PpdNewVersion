@@ -17,6 +17,8 @@
     <link href="css/jquery-ui-1.9.1.custom.css" rel="stylesheet" type="text/css">
     <!-- Jquery file upload -->
     <link rel="stylesheet" href="css/jquery.imagetag.css">
+    <!-- Popup Core File -->
+    <link rel="stylesheet" href="css/magnific-popup.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

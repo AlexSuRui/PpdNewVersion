@@ -14,6 +14,8 @@
     <script src="js/blowup.js"></script>
     <!-- File upload -->
     <script src="js/jquery-image-tag.js"></script>
+    <!-- PopUp -->
+    <script src="js/jquery.magnific-popup.min.js"></script>
 <!--     <script src="js/jquery.ui.widget.js"></script>
     <script src="js/jquery.iframe-transport.js"></script>
     <script src="js/jquery.fileupload.js"></script> -->
@@ -22,12 +24,10 @@
         $("#imgAnnotation").blowup()
     })
     </script>
-    <script>
-      $(function(){
-        $('#imgAnnotation').imageTag();
-        
-        $('#imgAnnotation').imageTag({tagForm: $("#form11"), labelProperty:'title'});
-      })
+    <script type="text/javascript">
+       $(document).ready(function(){
+        $("#imgAnnotation").magnific-popup({type:'image'});
+       });
     </script>
 <!--     <script type="text/javascript">
         $(function () {

@@ -80,8 +80,7 @@
 				$message = "Mise à jour du profil faite !";
 
 				ecrireMessage($message);
-				$msg = "test";
-				mail($email, "test", $msg);
+				// smtp_send_mail($email,"test","test","IDVParisDescartes");
 				if ($utilisateur == null)
 					$_SESSION["utilisateur"] = $me;
 			}

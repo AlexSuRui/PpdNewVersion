@@ -105,8 +105,9 @@
 					  						echo 'id="imgAnnotation" />';
 					  					}
 					  				 ?> -->
-									<img src=<?php echo '"'.$Image->Chemin.'"'; ?> id="imgAnnotation" />
-										
+					  				 <a class="image-link" href=<?php echo '"'.$Image->Chemin.'".jpg'; ?>> 
+										<img src=<?php echo '"'.$Image->Chemin.'"'; ?> id="imgAnnotation" />
+									</a>	
 									</center>
 
 						  		</div>
