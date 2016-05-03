@@ -47,8 +47,7 @@
 				  			<div class="row">
 				  				<div class="col-xs-12">
 										<form class="form-horizontal" role="form" action="http://localhost:9080/apriori/analyseur" method="get">
-								        <?php echoInput("support", "Support :", "Entrez un support entre 0 et 1", "text", null, "required");
-										echoInput("ontologie", "Ontologie :", "Entrez un support entre 0 et 1", "text", null, "required"); ?>
+							
 								          <table class="table table-hover" >
 								            <thead>
 								              <tr>
@@ -104,7 +103,7 @@
 									?>
             										</tbody>
           										</table>
-          									<button type="submit" class="btn btn-success" style="margin-left: 40%; margin-top: 20%" name="annoter">Soumettre à l'analyse APriori</button>
+          									<button type="submit" class="btn btn-success" style="margin-left: 20%; margin-top: 20%" name="annoter">Soumettre à l'analyse APriori</button>
         								</form>
       							</div>
    							 </div>
@@ -113,7 +112,7 @@
 					  			<div class="widget-main-title">Lancer l'analyse</strong>  ?</div>
 					  		</div>
 						     <div class="box-body"><strong><?php echo str_replace(";", " - ", $resultats); ?></strong></div>
-						     	<center><input type ="button" onclick="javascript:location.href='demandes.php'" style="margin-top: 10%" value="Retour" ></input>
+						     	<center><input type ="button" onclick="javascript:history.go(-1);" style="margin-top: 10%" value="Retour" ></input>
 						     	</center>
 						    </div>
 						    <?php } ?>

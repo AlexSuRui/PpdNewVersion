@@ -99,4 +99,26 @@ function ecrireErreur($message) {
 	echo '<div class="alert alert-danger" role="alert">'.$message.'</div>';
 }
 
+function smtp_send_mail($desAddress,$subjet,$content,$fromName){
+  
+  require 'plugins/phpmailer/class.phpmailer.php';
+  require 'plugins/phpmailer/class.smtp.php';
+  $mail = new PHPMailer();
+  $mail->CharSet = "UTF-8";
+  $mail->IsSMTP();
+  $mail->Host = "smtp.163.com";
+  $mail->Port = 25;
+  $mail->From = "surui_alex@163.com";
+  $mail->FromName = "surui_alex";
+  $mail->SMTPAuth = true;
+  $mail->Username = "surui_alex@163.com";
+  $mail->Password='1990110';
+  $mail->Subject = $subjet;
+  $mail->Body= $content;
+  $mail->IsHTML(true);
+  if (! $mail->Send()){
+    return FALSE;
+  }
+  return true;
+}
 ?>

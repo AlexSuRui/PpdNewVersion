@@ -38,6 +38,18 @@
 			header('Location: afficher.php?uid='.$_GET["uid"]);
 		}
 		
+		if (isset($_POST["bloquer"])){
+			$bDemande = $Image->UID;
+			$bUserUID = $_POST["bloquer"];
+			bloquer_Personne($bDemande, $bUserUID);
+			header('Location: afficher.php?uid='.$_GET["uid"]);
+
+		}
+
+		if (isset($_POST["analyser"])){
+			
+		}
+
 		if (isset($_POST["annoter"])) {
 			
 			if(isset($_POST["annotation"]) && !empty($_POST["annotation"]))
@@ -80,7 +92,7 @@
 				  	?>
 				  	<div class="box" style="border:1px solid #d0d0d0;" id="boxAff">
 				  		<div class="box-header">
-				  			<div class="widget-main-title">Annoter l'image</div>
+				  			<div class="widget-main-title">Annotation</div>
 				  		</div>
 				  		<div class="box-body">
 				  			<div class="row">
@@ -93,9 +105,11 @@
 					  						echo 'id="imgAnnotation" />';
 					  					}
 					  				 ?> -->
-									<img src=<?php echo '"'.$Image->Chemin.'"'; ?> id="imgAnnotation" />
-										
+					  				 <a class="image-link" href=<?php echo '"'.$Image->Chemin.'".jpg'; ?>> 
+										<img src=<?php echo '"'.$Image->Chemin.'"'; ?> id="imgAnnotation" />
+									</a>	
 									</center>
+
 						  		</div>
 						  		<div class="col-md-5 col-xs-10">
 						  				<table width="100%" id="tbInfo">
@@ -112,7 +126,7 @@
 						  											</tr>
 						  											<tr>
 						  												<td width="130">Client: </td>
-						  												<td><?php echo get_utilisateur($Image->UserUID); ?></td>
+						  												<td><?php echo get_utilisateur($Image->UserUID)->Identifiant; ?></td>
 						  											</tr>
 						  											<tr>
 						  												<td width="130">Description </td>
@@ -125,115 +139,161 @@
 						  						</tr>
 						  					</tbody>
 						  				</table>
-<!-- 						  				<?php  if ($Image->Verrouille == 1) {?> -->
 						  				<table width="100%" id="tbAnno">
 						  					<tbody>
 						  						<tr>
 						  							<td valign="top" width="50%">
 						  								<div class="widget-title">Annotation</div>
 						  								<div class="widget-content">
-						  									<table width="100%" cellpadding="4">
-						  										<thead>
-														          <tr>
-														            <th>Utilisateur</th>
-														            <th>Annotations</th>
-																	<th>fiabilité</th>
-														          </tr>
-														        </thead>
-						  										<tbody>
-						  											<?php
-																	 $last = -1;
-																	 $first = true;
-																	 $fanno = true;
-																	 foreach ($annotations as $annotation) {			
-																		if ($Image->MasquerLesContributions == 0 or ($annotation->UserUID == $me->UID))
+						  									<form class="form-horizontal" role="form" action="http://localhost:9080/apriori/analyseur" method="get">
+							  									<table width="100%" cellpadding="4">
+							  										<thead>
+															          <tr>
+															            <th>User</th>
+															            <th>Annotations</th>
+																		<!-- <th>Bloquer</th> -->
+															          </tr>
+															        </thead>
+							  										<!-- <tbody>
+							  											<?php
+																		 $last = -1;
+																		 $first = true;
+																		 $fanno = true;
+																		 foreach ($annotations as $annotation) {			
+																			if ($Image->MasquerLesContributions == 0 or ($annotation->UserUID == $me->UID))
+																			{
+																			if($last != $annotation->UID) {
+																				if ($first)
+																					$first = false;
+																				else
+																					echo "</td></tr>";
+																					
+																				$fanno = true;
+																				
+																				if ($annotation->UserUID == $me->UID)
+																					echo '<tr class="success">';
+																				else
+																					echo '<tr>';
+										
+																				echo "<td>".get_utilisateur($annotation->UserUID)->Identifiant." (<strong>".get_utilisateur($annotation->UserUID)->Reputation."</strong>)</td>";
+																				$utilisateur = get_utilisateur($annotation->UserUID);
+																				$operation.=$utilisateur->UID.";".$utilisateur->Reputation;
+																				$last = $annotation->UID;
+
+																			}
+																			if ($fanno)
+																				$fanno = false;
+																			else
+																				echo "";
+																				
+																			if ($annotation->UserUID == $me->UID and $annotation->Verrouille == 0 and $Image->Verrouille == 0)	
+																				echo '<a href="afficher.php?uid='.$_GET["uid"].'&ano='.$annotation->UID.'"<span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>';
+																			echo "<td>".$annotation->Texte."</td><td>".$annotation->Confiance."</td>";
+																			}
+																		}
+
+																		echo '</tr>';	
+							  										?>
+
+							  										</tbody> -->
+							  										<tbody>
+														        <?php
+																 $last = -1;
+																 $first = true;
+																 $fanno = true;
+																 $operation = "";
+																foreach ($annotations as $annotation) {
+																	
+																	if ($Image->MasquerLesContributions == 0 or ($annotation->UserUID == $me->UID))
+																	{
+																		if($last != $annotation->UserUID) 
 																		{
-																		if($last != $annotation->UID) {
 																			if ($first)
 																				$first = false;
-																			else
+																			else {
 																				echo "</td></tr>";
-																				
+																				$operation .= "|";
+																				}
 																			$fanno = true;
 																			
-																			if ($annotation->UserUID == $me->UID)
-																				echo '<tr class="success">';
-																			else
-																				echo '<tr>';
-									
-																			echo "<td>".get_utilisateur($annotation->UserUID)->Identifiant."</td>";
-
-																			$last = $annotation->UID;
-
+																			echo '<tr>';
+																			
+																			$utilisateur = get_utilisateur($annotation->UserUID);
+																			
+																			echo "<td>".$utilisateur->Identifiant." (<strong>".$utilisateur->Reputation."</strong>)</td><td>";
+																			
+																			$operation.=$utilisateur->UID.";".$utilisateur->Reputation;
+																			
+																			$last = $annotation->UserUID;
 																		}
+																		
 																		if ($fanno)
 																			$fanno = false;
 																		else
-																			echo "";
-																			
-																		if ($annotation->UserUID == $me->UID and $annotation->Verrouille == 0 and $Image->Verrouille == 0)	
-																			echo '<a href="afficher.php?uid='.$_GET["uid"].'&ano='.$annotation->UID.'"<span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>';
-																		echo "<td>".$annotation->Texte."</td><td>".$annotation->Confiance."</td>";
-																		}
-																	}
+																			echo "; ";
+																		
+																		$traite = str_replace('"', " ", $annotation->Texte);
+																		$traite = str_replace("'", " ", $traite);
+																		
+																		$operation.=";".$traite.";".$annotation->Confiance;	
+																		echo $annotation->Texte;
+																		
 
-																	echo '</tr>';	
-						  										?>	
-						  										</tbody>
-						  									</table>
-						  									
+																	}
+																		
+																}
+																$operation = addslashes($operation);
+																echo "</td></tr> <input type='hidden' name='operation' id='operation' value='$operation'></input>";
+															?>
+						            										</tbody>
+							  									</table>
+							  								<?php if ($Image->Verrouille == 1&&($Image->UserUID == $me->UID || $me->Administrateur)) { ?>
+						  									<button type="submit" class="btn btn-success" style="float: right; margin-top: 5%" name="analyser">Analyze</button>
+						  									<?php } ?>
+						  								</form>
 						  								</div>
 						  							</td>
 						  						</tr>
 						  					</tbody>
 						  				</table>
-<!-- 						  				<?php } ?> -->
 						  				<?php if ($Image->UserUID == $me->UID || $me->Administrateur) { ?>
 						  				<div class="box"style="border:1px solid #d0d0d0;" id="boxVerro">
 						  					<div class="box-header">
-	                  							<div class="widget-title">Opération sur l'image</div>
+	                  							<div class="widget-title">Operation on image</div>
 	                  						</div>
 	                  						<div class="box-body">
-	                  							<?php if ($me->Administrateur) { ?>
+	                  							<ul class="form-style-1">
 	                  							<form role="form" action=<?php echo '"afficher.php?uid='.$Image->UID.'"'; ?> method="post">
-	                  								<ul class="form-style-1">
-	                  									<li>
-	                  										<label>Vous voulez supprimer cet image?</label>
-	                  										<button type="submit" class="btn btn-danger" name="supprimer" value = "1">Supprimer</button>
+	                  									<li style="display: inline;">
+	                  										<button type="submit" class="btn btn-danger" name="supprimer" value = "1">Delete</button>
 	                  									</li>
-	                  								</ul>
-	                  							</form>
-	                  							<?php } ?>
-	                  							<ul class="form-style-1 ">
-	                  							<form role="form" action=<?php echo '"afficher.php?uid='.$Image->UID.'"'; ?> method="post">
-	                  								
 														<?php if ($Image->Verrouille == 0) { ?>
-														<li>
-															<button type="submit" class="btn btn-danger" name="verrouiller" value = "1">Verrouiller</button>
-															
+														<li style="display: inline;">
+															<button type="submit"  style="margin-left: 0%" class="btn btn-success " name="verrouiller" value = "1">Lock</button>															
 														</li>
+														<li style="display: inline;">
+															<button type="submit" style="margin-left: 0%" class="btn btn-success disabled " name="verrouiller" value = "0">Unlock</button>
+														</li>
+
 														<?php } else { ?>
-														<li>
-															<button type="submit" class="btn btn-success" name="verrouiller" value = "0">Déverrouiller</button>
+														<li style="display: inline;">
+															<button type="submit" style="margin-left: 0%" class="btn btn-success disabled" name="verrouiller" value = "1">Lock</button>															
+														</li>
+														<li style="display: inline;">
+															<button type="submit" style="margin-left: 0%" class="btn btn-success " name="verrouiller" value = "0">Unlock</button>
 															
 														</li>
 													
 												</form>
-												<form class="form-horizontal" role="form" action=<?php echo '"analyser.php?uid='.$Image->UID.'"'; ?> method="post">
-										            	<li>
-										                <button type="submit" class="btn btn-success" name="analyser">Analyser</button>
-										              	</li>
-										        </form>
 										        </ul>
 											</div>
 										</div>
 					
 												<?php } ?>
-						  				</div>
 						  				<?php } else if(!$me->Demandeur && $Image->Verrouille == 0){ ?>
 						  				<div class="box"style="border:1px solid #d0d0d0;" id="boxAnno">
 						  					<div class="box-header">
-	                  							<div class="widget-title">Annoter l'image</div>
+	                  							<div class="widget-title">Annotate image</div>
 	                  						</div>
 	                  						<div class="box-body">
 	                  							<form id="form11" role="form" action=<?php echo '"afficher.php?uid='.$Image->UID.'"'; ?> method="post">
@@ -244,14 +304,14 @@
 		                  								<li>
 		                  									<label>Confiance <span class="required">*</span></label>
 		                  									<input type="radio" name="confiance" value="100" checked />
-												            <font color="#5cb85c">Confiant</font>
+												            <font color="#5cb85c">Confident</font>
 												            <input type="radio" name="confiance" value="80" />
-												            <font color="#f0ad4e">Presque confiant</font>
+												            <font color="#f0ad4e">Average confident</font>
 												            <input type="radio" name="confiance" value="40" />
-												            <font color="#d9534f">Hésitant</font> 
+												            <font color="#d9534f">Hesitant</font> 
 		                  								</li>
 		                  								<li>
-		                  									<button type="submit" class="btn btn-success" name="annoter" >Soumettre l'annotation</button>
+		                  									<button type="submit" class="btn btn-success" name="annoter" >Submit the annotation</button>
 		                  								</li>
 		                  							</ul>
 	                  							</form>

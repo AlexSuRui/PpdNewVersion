@@ -10,30 +10,20 @@
 	
 	
 	if (isset($_POST["submit"])) {				
-		$identifiant = $_POST["identifiant"];
-		$mdp = $_POST["motDePasse"];
-		
-		$erreur = "";
-		
-		connection(true);
-		if ($identifiant!=="")
-		$utilisateur = get_utilisateur_selon_identifiant($identifiant);
-		
-		if ($utilisateur == null) {
-			$erreur .= "Aucun utilisateur avec cet identifiant.<br/>";
-			ecrireMessage($message);
-		} else {
-			$utilisateur = authentification($identifiant, $mdp);
-			
-			if ($utilisateur == null) {
-				$erreur .= "La combinaison identifiant/mot de passe fournie est incorrecte.<br/>";
-			} else {
-				$_SESSION["utilisateur"] = $utilisateur;
-				header('Location: profil.php');
-			}
+		  $email = $_POST["email"];
+      if (get_utilisateur_selon_email($email) == null)
+      {
+        $erreur.= "This email is not used.<br/>";
+        ecrireErreur($erreur);
+      }
+      else{
+        $utilisateur=get_utilisateur_selon_email($email);
+        $subjet = "You have lost your password.";
+        $text = "Your password is '.$utilisateur->MotDePasse.'";
+        smtp_send_mail($email,$subjet,$text,"IDVParisDescartes");
+      }
 		}
 		
-	}
 	
 ?>
 <!DOCTYPE html>
@@ -75,37 +65,20 @@
         <a href="index.php"><img src="images/logoIDV.png" /></a>
       </div><!-- /.login-logo -->
       <div class="login-box-body">
-        <p class="login-box-msg">Log in</p>
-        <form action="connexion.php" method="post">
+        <p class="login-box-msg">You have forgot your password</p>
+        <form action="fogetPsd.php" method="post">
           <div class="form-group has-feedback">
-            <input name="identifiant" type="text" class="form-control" placeholder="Login">
+            <input name="email" type="text" class="form-control" placeholder="Your email address">
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
-          <div class="form-group has-feedback">
-            <input name="motDePasse" type="password" class="form-control" placeholder="Mot de passe">
-            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-          </div>
           <div class="row">
-            <div class="col-xs-8">
-              <div class="checkbox icheck">
-              <label>
-          <?php 
-            if (isset($_GET["type"]) && $_GET['type'] == 'demandeur') 
-            {
-          ?>
-            <a href="enregistrement.php?type=demandeur" class="text-center">Sign up</a>
-          <?php 
-            }else{
-          ?>
-            <a href="enregistrement.php" class="text-center">Sign up</a>
-          <?php } ?>
-          	| <a href="fogetPsd.php">I forgot my password</a><br>
-                </label>
-              </div>
+             <div class="col-xs-4 col-xs-offset-2">
+              <button type="submit" name="submit" class="btn btn-primary btn-long" >OK</button>
             </div><!-- /.col -->
-            <div class="col-xs-3">
-              <button type="submit" name="submit" class="btn btn-primary btn-long" >Log in</button>
-            </div><!-- /.col -->
+            <div class="col-xs-6">
+              <button name="submit" class="btn btn-primary btn-long" onclick="javascript:history.go(-1);">Cancel</button>
+            </div> 
+           
           </div>
         </form>
 

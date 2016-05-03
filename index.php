@@ -82,7 +82,7 @@
                           <li>
                             <form class="form-horizontal" role="form" action="profil.php" method="post">
 
-                              <button class="btn btn-outline btn-md " type="submit"  name="deconnexion">Se déconnecter</button>
+                              <button class="btn btn-outline btn-md " type="submit"  name="deconnexion">Log off</button>
                             </form>
                           </li>
                               <?php }else{?>
@@ -107,7 +107,7 @@
                   <div class="row" >
                     <div class="col-md-10 col-md-offset-1 full-height js-full-height col-xs-10">
                       <div class="fh5co-cover-intro">
-                        <h3 class="cover-text-lead wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">Enrichissement sémantique des images biomédicales</h3>
+                        <h3 class="cover-text-lead wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">Semantic enrichment of Biomedical images</h3>
                         <div class="fh5co-post wow fadeInLeft"  data-wow-duration="1s" data-wow-delay="1.1s">
                           <img src ="images/bg.jpg" height="250px" width="750px">
                         </div>                        

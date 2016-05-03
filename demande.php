@@ -72,19 +72,19 @@
 			      <!-- Content Wrapper. Contains page content -->
 			    <div class="box" style="border:1px solid #d0d0d0;">
 					<div class="box-header">
-				        <div class="widget-main-title">Nouvelle tache</div>
+				        <div class="widget-main-title">New task</div>
 				    </div>
 				    <div class="box-body">
 				    	<form role="form" action="demande.php" method="post"  enctype="multipart/form-data">
 							<ul class="form-style-1">
 								
-							    <li><label>Title de tâche <span class="required">*</span></label><input type="text" name="nom" class="field-divided" placeholder="Title de tâche" />&nbsp;</li>
+							    <li><label>Title <span class="required">*</span></label><input type="text" name="nom" class="field-divided" placeholder="Title de tâche" />&nbsp;</li>
 							    <li>
 							        <label>Description <span class="required">*</span></label>
 							        <input type="text" name="description" class="field-long" placeholder="Description de cette tâche" />
 							    </li>
 							    <li>
-							    	<label>Categorie <span class="required">*</span></label>
+							    	<label>Category <span class="required">*</span></label>
 							        <select  name="categorie" onchange="this.form.submit()">
 							          <?php
 							            foreach ($categories as $categorie) {
@@ -97,7 +97,7 @@
 							        </select>
 							    </li>
 							    <li>
-							        <label for="image">Sélectionnez une image à publier <span class="required">*</span></label>
+							        <label for="image">Select an image to be published <span class="required">*</span></label>
 									<input type="file" name="image" id="image" multiple >
 							    </li>
 								<li>
@@ -110,7 +110,7 @@
 							    </li> -->
 							    <li>
 
-							        <button type="submit" class="btn btn-success btn-lg" name="submit">Soumettre la demande</button>
+							        <button type="submit" class="btn btn-success btn-lg" name="submit">Submit the request</button>
 							    </li>
 							</ul>
 
