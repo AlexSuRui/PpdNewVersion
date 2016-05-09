@@ -29,14 +29,16 @@
 			if ($Image != null) {
 			$DirectoryURL = $uploaddir ."/".$Image->UID;
 			$FileURL = $uploaddir ."/".$Image->UID."/".basename($_FILES['image']['name']);
+			echo $DirectoryURL;
 			if (is_dir($DirectoryURL)){
-				rmdir($DirectoryURL);
+				echo 'this file existe';
 			}else
 			{
 				if (mkdir($DirectoryURL, 0777, true)) {
 					if (move_uploaded_file($_FILES['image']['tmp_name'], $FileURL)) {
 						$message .= "Le fichier est valide.<br/>";
 						$Image->Chemin = $FileURL;
+						echo $FileURL;
 						maj_image_annotable($Image);
 						header('Location: demandes.php');
 						} else {

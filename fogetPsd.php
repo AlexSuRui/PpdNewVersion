@@ -1,30 +1,46 @@
 <?php
-	
-	session_start();
-	
-	if (isset($_SESSION["utilisateur"]))
-		header('Location: profil.php');
-	
-	include "module.php";
-	include "moduleBDD.php";
-	
-	
-	if (isset($_POST["submit"])) {				
-		  $email = $_POST["email"];
-      if (get_utilisateur_selon_email($email) == null)
+  
+  session_start();
+  
+  if (isset($_SESSION["utilisateur"]))
+    header('Location: profil.php');
+  
+  include "module.php";
+  include "moduleBDD.php";
+  
+  
+  if (isset($_POST["submit"])) {        
+    $email = $_POST["email"];
+    $identifiant = $_POST["identifiant"];
+    
+    $erreur = "";
+    
+    connection(true);
+    if ($email!==null){
+    $message=$email;
+    ecrireMessage($message);
+    $utilisateur = get_utilisateur_selon_email($identifiant,$email);
+     
+      if ($utilisateur == null)
       {
-        $erreur.= "This email is not used.<br/>";
-        ecrireErreur($erreur);
+      $erreur.= "This email is not used.<br/>";
+      ecrireErreur($erreur);
       }
       else{
-        $utilisateur=get_utilisateur_selon_email($email);
-        $subjet = "You have lost your password.";
-        $text = "Your password is '.$utilisateur->MotDePasse.'";
-        smtp_send_mail($email,$subjet,$text,"IDVParisDescartes");
+      $utilisateur = get_utilisateur_selon_email($identifiant,$email);
+      $subjet = "Find your password.";
+      $text = "Hello '.$utilisateur->Identifiant', your password is '.$utilisateur->MotDePasse.'";
+      // mail($email,$subjet,$text);
+      smtp_send_mail($email,$subjet,$text,"IDVParisDescartes");
       }
-		}
-		
-	
+    }
+    else{
+      $erreur.= "wtf";
+      ecrireErreur($erreur);
+    }
+  }
+    
+  
 ?>
 <!DOCTYPE html>
 <html>
@@ -68,6 +84,7 @@
         <p class="login-box-msg">You have forgot your password</p>
         <form action="fogetPsd.php" method="post">
           <div class="form-group has-feedback">
+            <input name="identifiant" type="text" class="form-control" placeholder="Your login">
             <input name="email" type="text" class="form-control" placeholder="Your email address">
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
