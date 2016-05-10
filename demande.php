@@ -30,26 +30,20 @@
 			$DirectoryURL = $uploaddir ."/".$Image->UID;
 			$FileURL = $uploaddir ."/".$Image->UID."/".basename($_FILES['image']['name']);
 			echo $DirectoryURL;
-			if (is_dir($DirectoryURL)){
-				echo 'this file existe';
-			}else
-			{
-				if (mkdir($DirectoryURL, 0777, true)) {
-					if (move_uploaded_file($_FILES['image']['tmp_name'], $FileURL)) {
+				if (!is_dir($DirectoryURL)){
+				mkdir($DirectoryURL, 0777, true);
+				}
+				if (move_uploaded_file($_FILES['image']['tmp_name'], $FileURL)) {
 						$message .= "Le fichier est valide.<br/>";
 						$Image->Chemin = $FileURL;
 						echo $FileURL;
 						maj_image_annotable($Image);
 						header('Location: demandes.php');
-						} else {
+				} else {
 						$erreur .= "Attaque potentielle par téléchargement de fichiers.<br/>";
 						supprimer_image_annotable($Image);
-						}   
-					} else {
-						$erreur .= "Erreur lors de la création du dossier.<br/>";
-						supprimer_image_annotable($Image);
-					}
 				}
+				
 			}
 			else
 				 $erreur = "Erreur lors de la création de l'image annotable.";			

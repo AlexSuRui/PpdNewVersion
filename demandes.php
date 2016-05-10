@@ -87,12 +87,12 @@
 										echo '<tr class="danger">';
 									else
 										echo '<tr>';
-										
+									$user = get_utilisateur($demande->UserUID);	
 									echo '
 									<td>'.$demande->UID.'</td>
 									<td><a href="afficher.php?uid='.$demande->UID.'">'.$demande->Nom.'</a></td>
-									<td>'.$demande->Description.'</td><td>'.get_categoriesSelongID($demande->TypeUID).'</td>
-									<td>'.get_utilisateur($demande->UserUID).'</td>
+									<td>'.$demande->Description.'</td><td>'.get_categoriesSelongID($demande->CategorieUID).'</td>
+									<td>'.$user->Identifiant.'</td>
 									';
 									
 									echo '</tr>';
