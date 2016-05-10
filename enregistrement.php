@@ -58,7 +58,14 @@
 			else 
 			{
 				$message = "Profil créé avec succès.";
-				header('Location: connexion.php');
+				$subjet = "Inscription sucess";
+			    $text = "Hello '.$identifiant' your account is successfully register,'";
+			      // mail($email,$subjet,$text);
+			    smtp_send_mail($email,$subjet,$text,"IDVParisDescartes");
+			    ecrireMessage($message);
+			    sleep(5);
+			    header('Location: connexion.php');
+			    exit;
 			}
 		}
 	}

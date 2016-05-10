@@ -5,7 +5,7 @@ include "classes.php";
 $SERVER = "localhost";
 $DATABASE = "NCSP";
 $USER = "root";
-$PASSWORD = "";
+$PASSWORD = "idv1.,";
 $DEBUG = false;
 
 $message = "";
@@ -922,7 +922,7 @@ function get_utilisateur($UserUID) {
 
 function get_utilisateur_selon_identifiant($Identifiant) {
     global $connexion, $DEBUG, $message, $erreur;
-    $requete = "SELECT * FROM Utilisateur WHERE Identifiant = '".$Identifiant."'";
+    $requete = "SELECT * FROM UTILISATEUR WHERE Identifiant = '".$Identifiant."'";
     if ($resultats = mysqli_query($connexion, $requete)) {
         if (mysqli_num_rows($resultats)>0) {
             $tuple = mysqli_fetch_assoc($resultats);
@@ -941,18 +941,18 @@ function get_utilisateur_selon_identifiant($Identifiant) {
     }
 }
 
-function get_utilisateur_selon_email($Email) {
+function get_utilisateur_selon_email($Identifiant, $Email) {
     global $connexion, $DEBUG, $message, $erreur;
-    $requete = "SELECT * FROM Utilisateur WHERE Email = '".$Email."'";
+    $requete = "SELECT * FROM UTILISATEUR WHERE Identifiant = '".$Identifiant."' and Email = '".$Email."'";
     if ($resultats = mysqli_query($connexion, $requete)) {
         if (mysqli_num_rows($resultats)>0) {
             $tuple = mysqli_fetch_assoc($resultats);
             if ($DEBUG)
                 $message .= "Utilisateur retrouvé : <b>".$tuple["Identifiant"]."</b><br/>";
-            return new Utilisateur($tuple["UserUID"], $tuple["Nom"], $tuple["Prenom"], $tuple["Identifiant"], $tuple["MotDePasse"], $tuple["Email"], $tuple["Statut"], $tuple["Demandeur"], $tuple["Bloque"], $tuple["Reputation"], $tuple["Administrateur"]);
+             return new Utilisateur($tuple["UserUID"], $tuple["Nom"], $tuple["Prenom"], $tuple["Identifiant"], $tuple["MotDePasse"], $tuple["Email"], $tuple["Statut"], $tuple["Demandeur"], $tuple["Bloque"], $tuple["Reputation"], $tuple["Administrateur"], $tuple["Institute"]);
         } else {
             if ($DEBUG)
-                $erreur .= "Pas d'utilisateur ayant cet email.<br/>";
+                $erreur .= "Pas d'utilisateur ayant cet identifiant.<br/>";
             return null;
         }
     } else {
