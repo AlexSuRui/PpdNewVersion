@@ -135,4 +135,6 @@ function smtp_send_mail($email,$subjet,$text,$fromName){
           echo 'Message has been sent';
       }
 }
+
+
 ?>

@@ -74,10 +74,13 @@
 	                    <thead>
 	                      <tr>
 	                        <th>#</th>
-							<th>Name</th>
+	                        <th>View</th>
+							<th width="130">Name</th>
 							<th>Description</th>
 							<th>Type</th>
+							<th width="130">Second Type</th>
 							<th>Owner</th>
+
 	                      </tr>
 	                    </thead>
 	                    <tbody>
@@ -90,8 +93,10 @@
 									$user = get_utilisateur($demande->UserUID);	
 									echo '
 									<td>'.$demande->UID.'</td>
+									<td><img src="'.get_image_annotable($demande->UID)->Chemin.'" id="view"></td>
 									<td><a href="afficher.php?uid='.$demande->UID.'">'.$demande->Nom.'</a></td>
 									<td>'.$demande->Description.'</td><td>'.get_categoriesSelongID($demande->CategorieUID).'</td>
+									<td>'.get_DemandeExtende($demande->UID).'</td>
 									<td>'.$user->Identifiant.'</td>
 									';
 									

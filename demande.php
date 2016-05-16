@@ -1,6 +1,8 @@
+
 <?php
 		include "module.php";
 		include "moduleBDD.php";
+		// include "select.php";
 		session_start();
 		/*startDocument("Demande");
 		navBar();*/
@@ -13,22 +15,23 @@
 			
 		if ($me->Demandeur == 0)
 			header('Location: demandes.php'); 
-		
+
 		if (isset($_POST["submit"])) {
 			$nom = addslashes($_POST["nom"]);
 			$description = addslashes($_POST["description"]);
 			$categorie = $_POST["categorie"];
+			$souscategorie = $_POST["sub-category"];
 			$date = date("Y-m-d H:i:s");
 			$verrouille = 0;
 			// $masquer = $_POST["masquer"];
 			
-			$Image = inserer_image_annotable($nom, $description, $date, $verrouille, 0, $me->UID, $categorie, 1, "");
+			$Image = inserer_image_annotable($nom, $description, $date, $verrouille, 0, $me->UID, $categorie, $souscategorie , "");
 			
-			$uploaddir = 'images';
+			$uploaddir = 'images/TaskImg';
 			
 			if ($Image != null) {
-			$DirectoryURL = $uploaddir ."/".$Image->UID;
-			$FileURL = $uploaddir ."/".$Image->UID."/".basename($_FILES['image']['name']);
+			$DirectoryURL = $uploaddir;
+			$FileURL = $uploaddir ."/Task".$Image->UID."-".basename($_FILES['image']['name']);
 			echo $DirectoryURL;
 				if (!is_dir($DirectoryURL)){
 				mkdir($DirectoryURL, 0777, true);
@@ -71,7 +74,7 @@
 				        <div class="widget-main-title">New task</div>
 				    </div>
 				    <div class="box-body">
-				    	<form role="form" action="demande.php" method="post"  enctype="multipart/form-data">
+				    	<form role="form" action="demande.php" method="post"  enctype="multipart/form-data" name="demandeForm">
 							<ul class="form-style-1">
 								
 							    <li><label>Title <span class="required">*</span></label><input type="text" name="nom" class="field-divided" placeholder="Title de tâche" />&nbsp;</li>
@@ -81,7 +84,8 @@
 							    </li>
 							    <li>
 							    	<label>Category <span class="required">*</span></label>
-							        <select  name="categorie" onchange="this.form.submit()">
+							        <select id="categorie" name="categorie" onChange="get_CousCat(this.options[this.selectedIndex].value)">
+							        	<option value="">Please choose a category</option>
 							          <?php
 							            foreach ($categories as $categorie) {
 							                if ($selected == $categorie->UID)
@@ -91,6 +95,14 @@
 							            }
 							            ?>
 							        </select>
+							    </li>
+								
+							    <li>
+							    	<label for="">Second category</label>
+							    	<select  name="sub-category" id="sub-category">
+							    		<option value="">Please choose a seconde category</option>
+
+							    	</select>
 							    </li>
 							    <li>
 							        <label for="image">Select an image to be published <span class="required">*</span></label>

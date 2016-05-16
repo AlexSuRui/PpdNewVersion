@@ -132,6 +132,14 @@
 						  												<td width="130">Description </td>
 						  												<td><?php echo $Image->Description; ?></td>
 						  											</tr>
+						  											<tr>
+						  												<td>Categorie</td>
+						  												<td><?php echo get_categoriesSelongID($Image->CategorieUID )?></td>
+						  											</tr>
+						  											<tr>
+						  												<td>Type</td>
+						  												<td><?php echo get_DemandeExtende($Image->UID) ?></td>
+						  											</tr>
 						  										</tbody>
 						  									</table>
 						  								</div>

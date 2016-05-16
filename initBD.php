@@ -33,6 +33,14 @@ create_table("CATEGORIE",
             "CategorieParente INT UNSIGNED",
 			"FOREIGN KEY (CategorieParente) REFERENCES CATEGORIE(CategorieUID) ON UPDATE CASCADE ON DELETE RESTRICT");
 
+// CREATION DE LA TABLE Sous Catégorie
+create_table("CATEGORIECHILD",
+            "ChildCategorieUID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY",
+            "Nom CHAR(32) CHARACTER SET utf8",
+            "Description TEXT CHARACTER SET utf8",
+            "CategorieUID INT UNSIGNED",
+            "FOREIGN KEY (CategorieUID) REFERENCES CATEGORIE(CategorieUID) ON UPDATE CASCADE ON DELETE RESTRICT");
+
 // CREATION DE LA TABLE Type
 create_table("TYPE", 
             "TypeUID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY",
@@ -54,7 +62,14 @@ create_table("DEMANDE",
 			"FOREIGN KEY (UserUID) REFERENCES UTILISATEUR(UserUID) ON UPDATE CASCADE ON DELETE RESTRICT",
 			"FOREIGN KEY (CategorieUID) REFERENCES CATEGORIE(CategorieUID) ON UPDATE CASCADE ON DELETE RESTRICT",
 			"FOREIGN KEY (TypeUID) REFERENCES TYPE(TypeUID) ON UPDATE CASCADE ON DELETE RESTRICT");
-			
+
+// CREATION DE LA TABLE DemandeExtend
+create_table("DEMANDEEXTEND",
+             "DemandeUID BIGINT UNSIGNED PRIMARY KEY",
+             "ChildCategorieUID INT UNSIGNED",
+             "FOREIGN KEY (ChildCategorieUID) REFERENCES CATEGORIECHILD(ChildCategorieUID) ON UPDATE CASCADE ON DELETE RESTRICT"
+             );
+
 // CREATION DE LA TABLE ImageAnnotable classe fille de Demande
 create_table("IMAGEANNOTABLE", 
             "DemandeUID BIGINT UNSIGNED PRIMARY KEY",
@@ -108,6 +123,8 @@ $utilisateur = inserer_utilisateur("Ghazala", "Ameni", "Ameni.GH", "MDP", "Paris
 supprimer_utilisateur($utilisateur);
 
 $categorie = inserer_categorie("Médicale", "Catégorie regroupant les demandes relatives au domaine médical.");
+$categorie = inserer_categorie("Radiology", "Catégorie regroupant les demandes relatives au domaine Radiology.");
+$categorie = inserer_categorie("Microscopy", "Catégorie regroupant les demandes relatives au domaine Microscopy.");
 $categorie = inserer_categorie("Médicale", "Catégorie regroupant les demandes relatives au domaine médical.");
 $categorie  = maj_categorie($categorie);
 supprimer_categorie($categorie);

@@ -51,6 +51,23 @@ class Categorie {
     
 }
 
+class SousCategorie {
+	public $ChildCategorieUID, $Nom, $Description, $CategorieUID;
+
+	public function __construct ($aChildCategorieUID, $aNom, $aDescription, $aCategorieUID){
+		$this->ChildCategorieUID = $aChildCategorieUID;
+		$this->Nom = $aNom;
+        $this->Description = $aDescription;
+        $this->CategorieUID = $aCategorieUID;
+
+	}
+
+	public function __toString(){
+		return $this->Nom;
+	}
+
+}
+
 class Type {
     
     public $UID, $Nom, $Description;
@@ -118,6 +135,14 @@ class Demande {
     
 }
 
+class DemandeExtend {
+	public $UID, $SousCategorieUID;
+
+	public function __construct($aUID, $aSousCategorieUID) {
+		$this->UID = $aUID;
+		$this->SousCategorieUID = $aSousCategorieUID; 
+	}
+}
 class ImageAnnotable extends Demande {
 	
 	public $Chemin;

@@ -434,11 +434,11 @@ function supprimer_demande ($Demande) {
     }
 }
 
-function inserer_image_annotable($Nom, $Description, $DatePublication, $Verrouille, $MasquerLesContributions, $UserUID, $CategorieUID, $TypeUID, $Chemin) {
+function inserer_image_annotable($Nom, $Description, $DatePublication, $Verrouille, $MasquerLesContributions, $UserUID, $CategorieUID, $ChildCategorieUID, $TypeUID, $Chemin) {
 	global $connexion, $DEBUG, $message, $erreur;
 	
 	$demande = inserer_demande($Nom, $Description, $DatePublication, $Verrouille, $MasquerLesContributions, $UserUID, $CategorieUID, $TypeUID);
-	
+	inserer_DemandeExtende($demande->UID, $ChildCategorieUID);
 	if ($demande != null) {
 		$requete = "INSERT INTO IMAGEANNOTABLE (DemandeUID, Chemin) VALUES (".$demande->UID.", '$Chemin')";
     
@@ -1025,6 +1025,25 @@ function get_categoriesSelongID($CategorieUID){
         return null;
     }
 }
+
+function get_sousCategorie($CategorieUID){
+    global $connexion, $DEBUG, $message, $erreur;
+
+    $requete = "SELECT * FROM CATEGORIECHILD WHERE CategorieUID = '".$CategorieUID."'";
+    $Souscategories  = array();
+    if ($resultats = mysqli_query($connexion, $requete)) {
+        if ($DEBUG)
+            $message .= mysqli_num_rows($resultats)." catégories retrouvés.<br/>";
+        while ($tuple = mysqli_fetch_assoc($resultats)) {
+            $Souscategories[] = new SousCategorie($tuple["ChildCategorieUID"], $tuple["Nom"], $tuple["Description"], $tuple["CategorieUID"]);
+        }
+        return $Souscategories;
+    } else {
+        if ($DEBUG)
+            $erreur .= "Impossible d'effectuer la requête :<br/>".$requete."<br/>";
+        return null;
+    }
+}
 // MANIPULATION DES DEMANDES
 
 function get_demande($DemandeUID) {
@@ -1322,4 +1341,47 @@ function bloquer_Personne($demandeUID,$userID){
     }
 }
 
+function inserer_DemandeExtende($demandeUID, $ChildCategorieUID){
+    global $connexion, $DEBUG, $message, $erreur;
+        $requete = "INSERT INTO DEMANDEEXTEND (DemandeUID, ChildCategorieUID) VALUES ($demandeUID, $ChildCategorieUID)";
+    
+    if (mysqli_query($connexion, $requete) === TRUE) {
+        $UID = mysqli_insert_id($connexion);
+        if ($DEBUG) {
+            $message .= "<b>Requête : </b> <b><i>".$requete."</i></b><br/>";
+            $message .= "Extende ajoutée avec succès dans la base de données.<br />";
+        }
+        return new DemandeExtend($demandeUID, $ChildCategorieUID);        
+    }
+    else 
+    {
+        if ($DEBUG) {
+            $erreur .= "<b>Requête : </b> <b><i>".$requete."</i></b><br/>";
+            $erreur .= "Erreur lors de l'ajout de la Extende dans la base de données (". mysqli_errno($connexion) .") :<br /><b>"
+              . mysqli_error($connexion)."</b><br/>";
+        }
+        return null;
+    }
+}
+
+function get_DemandeExtende($DemandeUID){
+    global $connexion, $DEBUG, $message, $erreur;
+    $requete = "SELECT * FROM DEMANDEEXTEND LEFT JOIN CATEGORIECHILD ON CATEGORIECHILD.ChildCategorieUID = DEMANDEEXTEND.ChildCategorieUID WHERE DEMANDEEXTEND.DemandeUID = $DemandeUID";
+    if ($resultats = mysqli_query($connexion, $requete)) {
+        if (mysqli_num_rows($resultats)>0) {
+            $tuple = mysqli_fetch_assoc($resultats);
+            if ($DEBUG)
+                $message .= "DemandeUID retrouvée.</b><br/>";
+            return $tuple["Nom"];
+        } else {
+            if ($DEBUG)
+                $erreur .= "Pas de DemandeExtend ayant cet identifiant unique.<br/>";
+            return null;
+        }
+    } else {
+        if ($DEBUG)
+            $erreur .= "Impossible d'effectuer la requête :<br/>".$requete."<br/>";
+        return null;
+    }
+}
 ?>

@@ -29,30 +29,25 @@
         $("#imgAnnotation").magnific-popup({type:'image'});
        });
     </script>
-<!--     <script type="text/javascript">
-        $(function () {
-        $('#image').fileupload({
-            dataType: 'json',
-            done: function (e, data) {
-                $.each(data.result.files, function (index, file) {
-                    $('<p/>').text(file.name).appendTo(document.body);
-                });
-            }
-        });
-    });
-    </script> -->
-<!-- 	<script>
-      $(function () {
-        $("#example1").DataTable();
-        $('#example2').DataTable({
-          "paging": true,
-          "lengthChange": false,
-          "searching": false,
-          "ordering": true,
-          "info": true,
-          "autoWidth": false
-        });
-      });
-    </script> -->
+    <script language="javascript" >
+
+        function get_CousCat(categorie){
+                        $("#sub-category").empty();
+            $.ajax({           
+                               type:'post',
+                               url:'get_SousCat.php',
+                               data:{
+                                    get_option:categorie
+                               },
+                               
+                               dataType:'text',
+                               success:function(response)
+                        {
+                    $("#sub-category").empty();
+                    $("#sub-category").append(response);
+                        }
+            });
+        }
+    </script>
   </body>
 </html>
