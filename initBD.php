@@ -144,8 +144,8 @@ $demande = inserer_demande("Demande de test", "Description de test", date("Y-m-d
 $demande = maj_demande($demande);
 supprimer_demande($demande);
 
-$imageannotable = inserer_image_annotable("Image de test", "Description de test", date("Y-m-d H:i:s"), 0, 0, 1, 1, 1, "http://www.babelio.com/users/QUIZ_Au-soleil-soleil_2983.jpeg");
-$imageannotable = inserer_image_annotable("Image de test", "Description de test", date("Y-m-d H:i:s"), 0, 0, 1, 1, 1, "https://sandiego.ncsy.org/files/2013/10/mountain-04.jpg");
+$imageannotable = inserer_image_annotable("Image de test", "Description de test", date("Y-m-d H:i:s"), 0, 0, 1, 1,1, 1, "http://www.babelio.com/users/QUIZ_Au-soleil-soleil_2983.jpeg");
+$imageannotable = inserer_image_annotable("Image de test", "Description de test", date("Y-m-d H:i:s"), 0, 0, 1, 1,1, 1, "https://sandiego.ncsy.org/files/2013/10/mountain-04.jpg");
 $imageannotable = maj_image_annotable($imageannotable);
 supprimer_image_annotable($imageannotable);
 
