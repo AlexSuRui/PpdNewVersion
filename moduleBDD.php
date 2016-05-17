@@ -1025,7 +1025,27 @@ function get_categoriesSelongID($CategorieUID){
         return null;
     }
 }
-
+function inserer_sousCategorie($CategorieUID, $Nom, $Description){
+    global $connexion, $DEBUG, $message, $erreur;
+    $requete = "INSERT INTO CATEGORIECHILD(CategorieUID, Nom, Description) VALUES ($CategorieUID, '$Nom', '$Description')";
+    if ($resultats = mysql_query($connexion,$requete)){
+        if ($DEBUG) {
+            $message .= "<b>Requête : </b> <b><i>".$requete."</i></b><br/>";
+            $message .= "SousCategorie <b>$Nom</b># ajouté avec succès dans la base de données.<br />";
+        }
+        return new SousCategorie($CategorieUID, $Nom, $Description, $UID);        
+    }
+    else 
+    {
+        if ($DEBUG) {
+            $erreur .= "<b>Requête : </b> <b><i>".$requete."</i></b><br/>";
+            $erreur .= "Erreur lors de l'ajout de la sous categorie dans la base de données (". mysqli_errno($connexion) .") :<br /><b>"
+              . mysqli_error($connexion)."</b><br/>";
+        }
+        return null;
+    }
+    
+}
 function get_sousCategorie($CategorieUID){
     global $connexion, $DEBUG, $message, $erreur;
 

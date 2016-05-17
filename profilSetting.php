@@ -40,7 +40,7 @@
 		// 	$erreur.= "Cet identifiant est déjà pris.<br/>";
 		// }
 	
-		if (get_utilisateur_selon_email($email) != null && $email != $me2->Email)
+		if (get_utilisateur_selon_email($identifiant,$email) != null && $email != $me2->Email)
 		{
 			$erreur.= "Cet email est déjà pris.<br/>";
 			ecrireErreur($erreur);

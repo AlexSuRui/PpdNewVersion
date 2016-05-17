@@ -128,7 +128,10 @@ $categorie = inserer_categorie("Microscopy", "Catégorie regroupant les demandes
 $categorie = inserer_categorie("Médicale", "Catégorie regroupant les demandes relatives au domaine médical.");
 $categorie  = maj_categorie($categorie);
 supprimer_categorie($categorie);
-
+$souscategorie = inserer_sousCategorie(2,"MagneticResonance","Test");
+$souscategorie = inserer_sousCategorie(2,"ComputerizedTomography","Test");
+$souscategorie = inserer_sousCategorie(2,"X–Ray","Test");
+$souscategorie = inserer_sousCategorie(2,"Angiography","Test");
 $type = inserer_type("Image annotable", "Type de demandes regroupant les images annotables.");
 $type = inserer_type("Image annotable", "Type de demandes regroupant les images annotables.");
 $type = maj_type($type);
@@ -139,7 +142,7 @@ $algorithme = inserer_algorithme("APriori", "Algorithme de fouille de données b
 $algorithme = maj_algorithme($algorithme);
 supprimer_algorithme($algorithme);
 
-$demande = inserer_demande("Demande de test", "Description de test", date("Y-m-d H:i:s"), 0, 0, 1, 1, 1);
+// $demande = inserer_demande("Demande de test", "Description de test", date("Y-m-d H:i:s"), 0, 0, 1, 1, 1);
 $demande = inserer_demande("Demande de test", "Description de test", date("Y-m-d H:i:s"), 0, 0, 1, 1, 1);
 $demande = maj_demande($demande);
 supprimer_demande($demande);

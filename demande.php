@@ -25,7 +25,7 @@
 			$verrouille = 0;
 			// $masquer = $_POST["masquer"];
 			
-			$Image = inserer_image_annotable($nom, $description, $date, $verrouille, 0, $me->UID, $categorie, $souscategorie , "");
+			$Image = inserer_image_annotable($nom, $description, $date, $verrouille, 0, $me->UID, $categorie, $souscategorie, 1, "");
 			
 			$uploaddir = 'images/TaskImg';
 			
