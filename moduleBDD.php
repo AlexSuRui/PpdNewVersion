@@ -5,7 +5,7 @@ include "classes.php";
 $SERVER = "localhost";
 $DATABASE = "NCSP";
 $USER = "root";
-$PASSWORD = "idv1.,";
+$PASSWORD = "";
 $DEBUG = false;
 
 $message = "";
