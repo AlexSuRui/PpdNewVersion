@@ -6,8 +6,13 @@ connection(true);
 $id =  $_POST[ 'pic_id' ];
 $usr =  $_POST[ 'usr_id' ];
 // fetch all tags
-	$annotations = get_annotations($id, $usr);
-
+	$image = get_image_annotable($id);
+	if($image->UserUID==$usr){
+		$annotations = get_annotations($id);
+	}else{
+		$annotations = get_annotations($id, $usr);
+	}
+	
 $data['boxes'] = '';
 $data['lists'] = '';
 	foreach ($annotations as $annotation) {
