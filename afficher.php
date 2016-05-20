@@ -98,16 +98,16 @@
 				  			<div class="row">
 					  			<div class="col-md-7 col-xs-10" >
 					  				<center>
-					  				<!-- <?php 
-					  					foreach ($Image as $image) {
-					  						echo '<img src=';
-					  						echo '"'.$Image->Chemin.'"'; 
-					  						echo 'id="imgAnnotation" />';
-					  					}
-					  				 ?> -->
-					  				 <a class="image-link" href=<?php echo '"'.$Image->Chemin.'".jpg'; ?>> 
-										<img src=<?php echo '"'.$Image->Chemin.'"'; ?> id="imgAnnotation" />
-									</a>	
+						  				<div id="imgtag">	
+											<img class= "imgAnnotation" src=<?php echo '"'.$Image->Chemin.'"'; ?> id=<?php echo '"'.$Image->UID.'"' ?> />
+											<div id="tagbox">
+	    									</div>
+										</div>
+										<div class="taglist">
+											<ol>
+												
+											</ol>
+										</div>	
 									</center>
 
 						  		</div>
@@ -204,7 +204,7 @@
 							  										?>
 
 							  										</tbody> -->
-							  										<tbody>
+							  										<tbody id="annotation">
 														        <?php
 																 $last = -1;
 																 $first = true;

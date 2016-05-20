@@ -18,7 +18,9 @@
     <!-- Jquery file upload -->
     <link rel="stylesheet" href="css/jquery.imagetag.css">
     <!-- Popup Core File -->
-    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">]
+    <!-- Jquery image tagging -->
+    <link rel="stylesheet" href="css/tagging.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -26,29 +28,7 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 
     <![endif]-->
-    <script language="javascript" >
-
-        function get_school(categorie){
-            local=$("#categorie").val();//取得地区名称
-                        $("#sub-category").empty();//清空学校名称
-                        $("#sub-category").append("<option selected=\"selected\">正在读取 "+local+" 地区学校列表，请稍侯……</option>");
-            $.ajax({           
-                               type:'post',
-                               url:'get_SousCat.php',
-                               data:{
-                                    get_option:categorie
-                               },
-                               
-                               dataType:'text',
-                               success:function(schools)
-                        {
-                    $("#sub-category").empty();
-                      $("#sub-category").append("<option selected=\"selected\">请选择 "+local+" 地区院校</option>");
-                    $("#sub-category").append(schools);
-                        }
-            });
-        }
-    </script>
+    
   </head>
 
  <div class="wrapper">

@@ -1067,7 +1067,7 @@ button{
 }
 
 /*======================IMAGE ANNOTATION=====================*/
-#imgAnnotation{
+.imgAnnotation{
     margin-top: 2em;
     width: 450px;
     height: 380px;

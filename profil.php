@@ -159,22 +159,22 @@
 									<img src="images/user.png" id="imgProfil">
 								</div>
 								<div class="col-md-8">
-									<div class="title"><?php echo $me2->Nom." ".$me2->Prenom; ?></div>
-								        <div>Member Since: Feb 18, 2016</div>
+									<div class="title"><?php echo $me2->Identifiant; ?></div>
+								        
 								        <div>Membership: <strong> <?php if ($me2->Demandeur == 1) { ?>
-												   Demandeur
+												   Requester
 												  <?php } else { ?>
-												   Contributeur
+												   Crowder
 												  <?php } ?> </strong>
 									</div>
 								</div>
 							</div>
 					    </div>
-					   <!--  <div class="calendar" style="margin-right: 5%">
-					        <div class="top corner-top">Mar</div>
-					        <div class="mid">Mardi</div>
-					        <div class="bottom corner-bottom">29</div>
-					    </div> -->
+					   <div class="calendar" style="margin-right: 5%">
+					        <div class="top corner-top"><?php echo date("F");  ?></div>
+					        <div class="mid"><?php echo date("D");  ?></div>
+					        <div class="bottom corner-bottom"><?php echo date("j");  ?></div>
+					    </div>
 					    <div class="clear"></div>
 					    <div id="tab">
 					    	<ul id="myTab" class="nav nav-tabs">
@@ -195,7 +195,7 @@
 									    <table width="100%" cellpadding="4">
 									        <tbody><tr>
 									            <td width="130">
-									            Etudiant:</td>
+									            <?php echo $me2->Statut ?></td>
 									            <td>0.0000</td>
 									        </tr>
 									    </tbody></table>    

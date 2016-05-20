@@ -141,9 +141,9 @@
 							</div>
 					    </div>
 					    <div class="calendar" style="margin-right: 5%">
-					        <div class="top corner-top">Mar</div>
-					        <div class="mid">Mardi</div>
-					        <div class="bottom corner-bottom">29</div>
+					        <div class="top corner-top"><?php echo date("F");  ?></div>
+					        <div class="mid"><?php echo date("D");  ?></div>
+					        <div class="bottom corner-bottom"><?php echo date("j");  ?></div>
 					    </div>
 					    <div class="clear"></div>
 					    <div id="tab">
